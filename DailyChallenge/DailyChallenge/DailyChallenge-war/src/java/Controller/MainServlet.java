@@ -44,11 +44,13 @@ public class MainServlet extends HttpServlet {
                 request.getParameter("userpassword").equals(request.getParameter("userpassword2")))
             {    
                 int iniscore = 0;            
-                Anwender user = bean.createUser(request.getParameter("username"),
+                Anwender user = bean.createUser(
+                                            request.getParameter("username"),
                                             request.getParameter("userpassword"), 
                                             request.getParameter("email"),
-                                            iniscore);             
-                request.getRequestDispatcher("/Hauptseite.jsp").forward(request, response);
+                                            iniscore);
+                request.setAttribute("anwendername", request.getParameter("username"));
+                request.getRequestDispatcher("/HauptSeite.jsp").forward(request, response);
             }
             else
             {
