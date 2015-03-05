@@ -35,7 +35,7 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("anwendername", user.getUserName());
                 request.getRequestDispatcher("/HauptSeite.jsp").forward(request, response); 
             }else{
-                request.getRequestDispatcher("/Login-Error.html");
+                request.getRequestDispatcher("/Login-Error.html").forward(request, response);
             }
         
             
