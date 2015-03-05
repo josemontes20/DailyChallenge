@@ -46,4 +46,42 @@ public class UserControl{
         return abfrage.getSingleResult();
         }
     }
+    
+    public String registerValide(String username, String email, String passwort, String passwordRepeat){
+        if ((passwort != null && passwordRepeat != null) && passwort.equals(passwordRepeat)){
+           
+            if (username != null){
+               TypedQuery<Anwender> abfrageUser = em.createNamedQuery("Anwender.findByUser", Anwender.class)
+                                              .setParameter("username", username);
+               
+               if (abfrageUser.getResultList().isEmpty()){
+                   
+                   if(checkMailPattern(email)){
+                       TypedQuery<Anwender> abfrageEmail = em.createNamedQuery("Anwender.GetEmail", Anwender.class)
+                                              .setParameter("email", email);
+                       if(abfrageEmail.getResultList().isEmpty()){
+                           return "OK";
+                       }else{
+                           return "EMAIL REPEAT";
+                       } 
+                   }else{
+                       return "EMAIL NOT OK";
+                   }
+               }else{
+                   return "USERNAME REPEAT";
+               }
+           }else{
+               return "USERNAME NOT NULL";
+           }
+        }else{
+            return "PASSWORD NOT OK";
+        }
+    }
+    
+    /** Überprüfung des Mail-Formats. */
+    protected boolean checkMailPattern(String login)
+    {
+        String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return login.matches(EMAIL_REGEX);
+    }
 }
