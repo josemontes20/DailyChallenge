@@ -60,55 +60,39 @@ public class MainServlet extends HttpServlet {
                 request.getRequestDispatcher("/HauptSeite.jsp").forward(request, response);
             }
             else if (registerResult.equals("USERNAME NOT NULL")){
-                uebergabTEMP = "USER";
-                request.setAttribute("uebergabTEMP", uebergabTEMP);
-                
+               
                 String errorUser = "Username darf nicht NULL sein!";
-                request.setAttribute("errorUser", errorUser);
+                request.setAttribute("error", errorUser);
                 request.getRequestDispatcher("/register-error.jsp").forward(request, response);
-                errorUser = null;
             }
             else if (registerResult.equals("USERNAME REPEAT")){
-                uebergabTEMP = "USER";
-                request.setAttribute("uebergabTEMP", uebergabTEMP);
                 
                 String errorUser = "Username ist bereits vergeben!";
-                request.setAttribute("errorUser", errorUser);
+                request.setAttribute("error", errorUser);
                 request.getRequestDispatcher("/register-error.jsp").forward(request, response);
-                errorUser = null;
             }
             else if (registerResult.equals("EMAIL NOT OK")){
-                uebergabTEMP = "EMAIL";
-                request.setAttribute("uebergabTEMP", uebergabTEMP);
                 
                 String errorEmail = "Email ist nicht valide!";
-                request.setAttribute("errorEmail", errorEmail);
+                request.setAttribute("error", errorEmail);
                 request.getRequestDispatcher("/register-error.jsp").forward(request, response);
-                errorEmail = null;   
             }
             else if (registerResult.equals("EMAIL REPEAT")){
-                uebergabTEMP = "EMAIL";
-                request.setAttribute("uebergabTEMP", uebergabTEMP);
-                
+            
                 String errorEmail = "Email ist bereits vergeben!";
-                request.setAttribute("errorEmail", errorEmail);
+                request.setAttribute("error", errorEmail);
                 request.getRequestDispatcher("/register-error.jsp").forward(request, response);
-                errorEmail = null; 
             }
             else if (registerResult.equals("PASSWORD NOT OK")){
-                uebergabTEMP = "PASSWORD";
-                request.setAttribute("uebergabTEMP", uebergabTEMP);
-                
+               
                 String errorPassword = "Passwort darf nicht NULL sein und muss richtig wiederholt werden!";
-                request.setAttribute("errorPassword", errorPassword);
+                request.setAttribute("error", errorPassword);
                 request.getRequestDispatcher("/register-error.jsp").forward(request, response);
             }
             else{
-                uebergabTEMP = "REGISTRIERUNG";
-                request.setAttribute("uebergabTEMP", uebergabTEMP);
                 
                 String errorRegister = "Registrierung ist fehlgeschlagen!";
-                request.setAttribute("errorRegister", errorRegister);
+                request.setAttribute("error", errorRegister);
                 request.getRequestDispatcher("/register-error.jsp").forward(request, response);
             }
         }
