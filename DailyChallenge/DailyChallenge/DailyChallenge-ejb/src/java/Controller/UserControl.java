@@ -48,9 +48,9 @@ public class UserControl{
     }
     
     public String registerValide(String username, String email, String passwort, String passwordRepeat){
-        if ((passwort != null && passwordRepeat != null) && passwort.equals(passwordRepeat)){
+        if ((passwort != null && passwordRepeat != null) && passwort.equals(passwordRepeat) && (!passwort.equals(""))){
            
-            if (username != null){
+            if (username != null && (!username.equals(""))){
                TypedQuery<Anwender> abfrageUser = em.createNamedQuery("Anwender.findByUser", Anwender.class)
                                               .setParameter("username", username);
                
