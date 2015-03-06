@@ -1,22 +1,62 @@
-<%-- 
-    Document   : Login
-    Created on : 01.03.2015, 21:52:55
-    Author     : José Montes
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>LOGIN Daily Challenge</title>
+        <title>Daily Challenge</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <!-- Bootstrap theme -->
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <!-- Logo in Navbar -->
+        <link href="css/logo-nav.css" rel="stylesheet">
+
     </head>
     <body>
-        <h1>Melde dich an!</h1>
-        <form form method="post" action="/DailyChallenge-war/mainservlet?step=anmelden">
-            <p> Username: <input type="text" name="username" /></p>
-            <p> Password: <input type="password" name="userpassword" /></p>
-            <p><input type="submit" value="Anmelden" /></p>
-        </form>
+        <!-- Navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container" style="padding-left: 35px;">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/pfeil.png" style="height: 50px; width: auto;">
+                    </a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/DailyChallenge-war/register.jsp" style="font-size: 18px; font-weight: bold; color: #3e84c0">Registrieren</a></li> 
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
+                        <li style="font-size: 18px; font-weight: bold; margin-top: 12px; color: #646464">Bereits Registriert?</li>
+                        <li><a href="/DailyChallenge-war/Login.jsp" style="font-size: 18px; font-weight: bold; color: #3e84c0">Anmelden!</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Inhalt -->
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Melde dich an!</h1>
+                <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=anmelden">
+                    <div class="form-group">
+                        <label for="User" class="control-label col-xs-2">Benutzername:</label>
+                        <div class="col-xs-10">
+                            <input name="username" type="text" class="form-control" id="User" placeholder="Benutzname">  
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password" class="control-label col-xs-2">Passwort:</label>
+                        <div class="col-xs-10">
+                            <input name="userpassword" type="password" class="form-control" id="Password" placeholder="Passwort">  
+                        </div>
+                    </div>
+                    <div class="col-xs-2"/>
+                    <p><input class="btn btn-lg btn-primary" type="submit" value="Anmelden" /></p>
+                    <br>
+                    <p><input class="btn btn-lg btn-danger col-xs-2" type="submit" value="Eskalation" /></p>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
