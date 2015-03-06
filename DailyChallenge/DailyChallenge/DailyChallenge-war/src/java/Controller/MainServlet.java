@@ -40,7 +40,6 @@ public class MainServlet extends HttpServlet {
         
             
         }else if(tempStep.equalsIgnoreCase("registrieren")){
-            String uebergabTEMP = "Leer";
             
             String registerResult = bean.registerValide(
                                     request.getParameter("username"),
@@ -106,7 +105,6 @@ public class MainServlet extends HttpServlet {
                     }
             }
         }
-        
     }
 
     
