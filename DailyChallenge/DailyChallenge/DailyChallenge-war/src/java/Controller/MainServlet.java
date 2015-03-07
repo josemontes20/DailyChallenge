@@ -63,42 +63,42 @@ public class MainServlet extends HttpServlet {
                     }
                 case "USERNAME NOT NULL":
                     {
-                        String errorUser = "Username darf nicht NULL sein!";
+                        String errorUser = "Du hast keinen Benutzernamen eingegeben!";
                         request.setAttribute("error", errorUser);
                         request.getRequestDispatcher("/register-error.jsp").forward(request, response);
                         break;
                     }
                 case "USERNAME REPEAT":
                     {
-                        String errorUser = "Username ist bereits vergeben!";
+                        String errorUser = "Dein Benutzername wird leider schon verwendet!";
                         request.setAttribute("error", errorUser);
                         request.getRequestDispatcher("/register-error.jsp").forward(request, response);
                         break;
                     }
                 case "EMAIL NOT OK":
                     {
-                        String errorEmail = "Email ist nicht valide!";
+                        String errorEmail = "Gib bitte eine gültige E-Mail Adresse ein!";
                         request.setAttribute("error", errorEmail);
                         request.getRequestDispatcher("/register-error.jsp").forward(request, response);
                         break;
                     }
                 case "EMAIL REPEAT":
                     {
-                        String errorEmail = "Email ist bereits vergeben!";
+                        String errorEmail = "Es gibt bereits einen Benutzer mit dieser E-Mail Adresse!";
                         request.setAttribute("error", errorEmail);
                         request.getRequestDispatcher("/register-error.jsp").forward(request, response);
                         break;
                     }
                 case "PASSWORD NOT OK":
                     {
-                        String errorPassword = "Passwort darf nicht NULL sein und muss richtig wiederholt werden!";
+                        String errorPassword = "Es gab einen Fehler mit deinem Passwort!";
                         request.setAttribute("error", errorPassword);
                         request.getRequestDispatcher("/register-error.jsp").forward(request, response);
                         break;
                     }
                 default:
                     {
-                        String errorRegister = "Registrierung ist fehlgeschlagen!";
+                        String errorRegister = "Deine Registrierung ist leider fehlgeschlagen!";
                         request.setAttribute("error", errorRegister);
                         request.getRequestDispatcher("/register-error.jsp").forward(request, response);
                         break;

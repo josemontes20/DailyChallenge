@@ -1,17 +1,53 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>Anmeldung fehlgeschlagen</title>
+        <title>Daily Challenge</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <!-- Bootstrap theme -->
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <!-- Logo in Navbar -->
+        <link href="css/logo-nav.css" rel="stylesheet">
+
     </head>
     <body>
-        <p> Die Anmeldung war nicht erfolgreich! <button type="button" ><a href="/DailyChallenge-war/Login.jsp"> Anmelden</a></button> </p>
-        <p> Falls du noch nicht registriert bist: <button type="button"><a href="/DailyChallenge-war/register.jsp"> Registrieren</a></button> </p>
+        <!-- Navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container" style="padding-left: 35px;">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/pfeil.png" style="height: 50px; width: auto;">
+                    </a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/DailyChallenge-war/register.jsp" style="font-size: 18px; font-weight: bold; color: #3e84c0">Registrieren</a></li> 
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
+                        <li style="font-size: 18px; font-weight: bold; margin-top: 12px; color: #646464">Bereits Registriert?</li>
+                        <li><a href="/DailyChallenge-war/Login.jsp" style="font-size: 18px; font-weight: bold; color: #3e84c0">Anmelden!</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="jumbotron" style="padding-top: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 0px;">
+                <div class="media">
+                    <span class="media-left">
+                        <img src="images/wrong.png" alt="" style="height:300px; width:300px">
+                    </span>
+                    <div class="media-body">
+                        <br><br><br><br><br>
+                        <p class="col-md-6"> Leider sind deine Benutzerdaten falsch!</p>
+                        <p class="col-md-1"> <a class="btn btn-lg btn-primary" href="/DailyChallenge-war/Login.jsp">Zurück</a></p>
+                        <p class="col-md-6"> Du bist noch nicht registriert? </p>
+                        <p class="col-md-1"><a class="btn btn-lg btn-primary" href="/DailyChallenge-war/register.jsp"> Registrieren</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

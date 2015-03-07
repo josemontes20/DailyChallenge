@@ -12,7 +12,6 @@
         <link href="css/bootstrap-theme.css" rel="stylesheet">
         <!-- Logo in Navbar -->
         <link href="css/logo-nav.css" rel="stylesheet">
-
     </head>
     <body>
         <!-- Navbar -->
@@ -37,7 +36,8 @@
         <!-- Inhalt -->
         <div class="container">
             <div class="jumbotron">
-                <h1>Melde dich an!</h1>
+                <h2 style="margin-left: 17%;">Gib deine Benutzerdaten ein!</h2>
+                <br>
                 <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=anmelden">
                     <div class="form-group">
                         <label for="User" class="control-label col-xs-2">Benutzername:</label>
@@ -51,10 +51,7 @@
                             <input name="userpassword" type="password" class="form-control" id="Password" placeholder="Passwort">  
                         </div>
                     </div>
-                    <div class="col-xs-2"/>
-                    <p><input class="btn btn-lg btn-primary" type="submit" value="Anmelden" /></p>
-                    <br>
-                    <p><input class="btn btn-lg btn-danger col-xs-2" type="submit" value="Eskalation" /></p>
+                    <p><input class="btn btn-lg btn-primary" type="submit" value="Anmelden" style="margin-left: 17%;"/></p>
                 </form>
             </div>
         </div>
