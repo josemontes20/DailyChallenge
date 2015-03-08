@@ -27,15 +27,20 @@ import javax.persistence.NamedQuery;
 public class Anwender implements Serializable {
     
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     @Column 
     private String username;
+    
     @Column 
     private String userpassword;
+    
     @Column 
     private String email;
+    
     @Column 
     private int score;
     
@@ -115,7 +120,6 @@ public class Anwender implements Serializable {
         }
         return true;
     }
-    
     
 }
 

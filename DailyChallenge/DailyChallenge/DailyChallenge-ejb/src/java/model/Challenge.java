@@ -25,6 +25,9 @@ import javax.persistence.NamedQueries;
     */
 })
 public class Challenge implements Serializable {
+   
+    private static final long serialVersionUID = 1L;
+   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

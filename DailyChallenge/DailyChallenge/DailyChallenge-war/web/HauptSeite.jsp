@@ -12,13 +12,20 @@
         <title>Daily Challenge Startseite</title>
     </head>
     <body>
-        <h1>Herzlich Willkommen zu Daily Challenge!</h1>
+        <h1>Herzlich Willkommen zu Daily Challenge, <%= session.getAttribute("User") %>!</h1>
+        <h2>Deine aktuelle Challenges:</h2>
+        <ol>
+            <li>...</li> 
+            <li>...</li> 
+            <li>...</li> 
+        </ol>
+        
         
         <% 
             String anwendername = (String) request.getAttribute("anwendername");
         %>
         
-        <button type="button"><a href="/DailyChallenge-war/profil.jsp"> Dein Profil, <%= anwendername%>! </a></button>
+        <button type="button"><a href="/DailyChallenge-war/profil.jsp">Profil bearbeiten</a></button>
         
     </body>
 </html>

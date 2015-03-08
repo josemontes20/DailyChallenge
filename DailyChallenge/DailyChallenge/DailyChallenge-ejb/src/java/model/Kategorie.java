@@ -1,12 +1,14 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
@@ -16,13 +18,7 @@ import javax.persistence.NamedQueries;
 @Entity
 @NamedQueries(
 {
-    /*
-    @NamedQuery(name = "Anwender.findById", query = "SELECT a FROM Anwender a WHERE a.id = :id"),
-    @NamedQuery(name = "Anwender.findByUser", query = "SELECT a FROM Anwender a WHERE a.username = :username"),
-    @NamedQuery(name = "Anwender.findByUserAndPassword", query = "SELECT a FROM Anwender a WHERE a.username = :username AND a.userpassword = :userpassword"),
-    @NamedQuery(name = "Anwender.GetScore", query = "SELECT a.score FROM Anwender a WHERE a.username = :username"),
-    @NamedQuery(name = "Anwender.GetEmail", query = "SELECT a.email FROM Anwender a WHERE a.email = :email")
-    */
+    @NamedQuery(name = "Kategorie.findAllKategorie", query = "SELECT * FROM Kategorie"),
 })
 public class Kategorie implements Serializable {
     
@@ -45,11 +41,12 @@ public class Kategorie implements Serializable {
     public Long getId() {
         return id;
     }
-
-    public void setId(Long id) {
+    
+    public void setId(Long id)
+    {
         this.id = id;
     }
-
+     
     public String getName() {
         return name;
     }
@@ -57,5 +54,29 @@ public class Kategorie implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
+
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+   @Override
+   public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Kategorie))
+        {
+            return false;
+        }
+        Kategorie other = (Kategorie) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
+        {
+            return false;
+        }
+        return true;
+    }
 }
