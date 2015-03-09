@@ -115,13 +115,11 @@ public class MainServlet extends HttpServlet {
             /*Hier muss nachgeschaut werden!*/
             
             HttpSession session = request.getSession();
+
             session.removeAttribute("anwendername");
-            session.setAttribute("anwendername", null);
-                    
-                if(session.getAttribute("anwendername") == null){
-                    session.invalidate();
-                    response.sendRedirect("/DailyChallenge-war/login.jsp");
-                }            
+            session.invalidate();
+            response.sendRedirect("/DailyChallenge-war/login.jsp");
+                          
             
         }else if (tempStep.equalsIgnoreCase("profil")){            
             response.sendRedirect("/DailyChallenge-war/profil.jsp");
