@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Anwender;
 
 /**
@@ -32,10 +33,13 @@ public class MainServlet extends HttpServlet {
                                        request.getParameter("userpassword"));
             
             if (user != null){
-                request.setAttribute("anwendername", user.getUserName());
-                request.getRequestDispatcher("/mainpage.jsp").forward(request, response); 
+                HttpSession session = request.getSession();
+                session.setMaxInactiveInterval(30*60);
+                session.setAttribute("anwendername", user.getUserName());
+                
+                response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
             }else{
-                request.getRequestDispatcher("/login_error.html").forward(request, response);
+                response.sendRedirect("/DailyChallenge-war/login_error.html");
             }
         
             
@@ -57,8 +61,11 @@ public class MainServlet extends HttpServlet {
                                     request.getParameter("email"),
                                     iniscore);
                     
-                        request.setAttribute("anwendername", request.getParameter("username"));
-                        request.getRequestDispatcher("/mainPage.jsp").forward(request, response);
+                        HttpSession session = request.getSession();
+                        session.setMaxInactiveInterval(30*60);
+                        session.setAttribute("anwendername", user.getUserName());
+
+                        response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                         break;
                     }
                 case "USERNAME NOT NULL":
@@ -104,6 +111,20 @@ public class MainServlet extends HttpServlet {
                         break;
                     }
             }
+        }else if(tempStep.equalsIgnoreCase("abmelden")){
+            /*Hier muss nachgeschaut werden!*/
+            
+            HttpSession session = request.getSession();
+            session.removeAttribute("anwendername");
+            session.setAttribute("anwendername", null);
+                    
+                if(session.getAttribute("anwendername") == null){
+                    session.invalidate();
+                    response.sendRedirect("/DailyChallenge-war/login.jsp");
+                }            
+            
+        }else if (tempStep.equalsIgnoreCase("profil")){            
+            response.sendRedirect("/DailyChallenge-war/profil.jsp");
         }
     }
 

@@ -12,20 +12,24 @@
         <title>Daily Challenge Startseite</title>
     </head>
     <body>
-        <h1>Herzlich Willkommen zu Daily Challenge, <%= session.getAttribute("User") %>!</h1>
+        <%  
+            String anwendername = "Leer";
+            if(session.getAttribute("anwendername") == null){
+                 response.sendRedirect("/DailyChallenge-war/login_error.html");
+            }
+            else anwendername = (String) session.getAttribute("anwendername");
+        %>
+            
+        <h1>Herzlich Willkommen zu Daily Challenge, <%= anwendername %>!</h1>
         <h2>Deine aktuelle Challenges:</h2>
         <ol>
             <li>...</li> 
             <li>...</li> 
             <li>...</li> 
         </ol>
-        
-        
-        <% 
-            String anwendername = (String) request.getAttribute("anwendername");
-        %>
-        
-        <button type="button"><a href="/DailyChallenge-war/profil.jsp">Profil bearbeiten, <%= anwendername%>!</a></button>
+        <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=profil">
+            <p><input type="submit" value="Profil bearbeiten, <%= anwendername%>!"/></p>
+        </form>
         
     </body>
 </html>
