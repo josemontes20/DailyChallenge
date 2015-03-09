@@ -25,7 +25,7 @@
             String anwendername = (String) request.getAttribute("anwendername");
         %>
         
-        <button type="button"><a href="/DailyChallenge-war/profil.jsp">Profil bearbeiten</a></button>
+        <button type="button"><a href="/DailyChallenge-war/profil.jsp">Profil bearbeiten, <%= anwendername%>!</a></button>
         
     </body>
 </html>
