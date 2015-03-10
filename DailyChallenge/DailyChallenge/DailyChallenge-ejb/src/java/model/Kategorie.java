@@ -5,8 +5,8 @@
  */
 package model;
 
-import java.io.Serializable;
 import java.util.List;
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 public class Kategorie implements Serializable {
     
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -31,7 +32,7 @@ public class Kategorie implements Serializable {
     @Column(name="name", nullable=false, unique = true, length = 20)
     private String name;
     
-    @OneToMany(cascade={CascadeType.ALL})
+    @OneToMany(mappedBy="kategorie", cascade={CascadeType.ALL})
     private List<Challenge> challenges;
     
     public Kategorie() {
@@ -49,14 +50,6 @@ public class Kategorie implements Serializable {
     public String getName() {
         return name;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
     
     public List<Challenge> getChallenges() {
         return challenges;
@@ -69,7 +62,7 @@ public class Kategorie implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (name != null ? name.hashCode() : 0);
         return hash;
     }
 
@@ -80,7 +73,7 @@ public class Kategorie implements Serializable {
             return false;
         }
         Kategorie other = (Kategorie) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.name == null && other.name != null) || (this.name != null && !this.name.equals(other.name))) {
             return false;
         }
         return true;
@@ -88,7 +81,7 @@ public class Kategorie implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Kategorie[ id=" + id + " ]";
+        return "model.Kategorie[ name=" + name + " ]";
     }
     
 }
