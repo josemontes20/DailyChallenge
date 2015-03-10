@@ -12,9 +12,13 @@
         <title>Dein Profil</title>
     </head>
     <body>
-        <%  
-            if(session.getAttribute("anwendername") == null){
-                 response.sendRedirect("/DailyChallenge-war/login.jsp");
+        
+        <% 
+            String logon = (String) request.getAttribute("logon");
+            
+            if(logon.equals("false")){
+                
+                //response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
         %>
         
@@ -23,6 +27,7 @@
         
         <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=abmelden">
             <p><input type="submit" value="Abmelden"/></p>
+            <p><%= logon%></p>
         </form>
         
     </body>

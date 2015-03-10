@@ -27,7 +27,7 @@ public class MainServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             
         String tempStep = request.getParameter("step");
-        
+      
         if(tempStep.equalsIgnoreCase("anmelden")){
             Anwender user = bean.loginUser(request.getParameter("username"),
                                        request.getParameter("userpassword"));
@@ -112,17 +112,28 @@ public class MainServlet extends HttpServlet {
                     }
             }
         }else if(tempStep.equalsIgnoreCase("abmelden")){
-            /*Hier muss nachgeschaut werden!*/
+            request.removeAttribute("logon");
+            request.setAttribute("logon", "false");
+           
+            //Aufgrund eines GlassFish-Bugs, wird eine NullPointerException geworfen.
+            /*try{
+                request.getSession().invalidate();
+            }catch(Exception ex){
+                System.out.println("GlassFishServerBug:" + ex);
+            }*/
             
-            HttpSession session = request.getSession();
-
-            session.removeAttribute("anwendername");
-            session.invalidate();
-            response.sendRedirect("/DailyChallenge-war/login.jsp");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Cache-Control", "no-store");
+            response.setDateHeader("Expires", 0);
+            response.setHeader("Pragma", "no-cache");
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            //response.sendRedirect("/DailyChallenge-war/login.jsp");           
                           
+        }else if (tempStep.equalsIgnoreCase("profil")){
             
-        }else if (tempStep.equalsIgnoreCase("profil")){            
-            response.sendRedirect("/DailyChallenge-war/profil.jsp");
+            request.setAttribute("logon", "true");
+            request.getRequestDispatcher("/profil.jsp").forward(request, response);
+            //response.sendRedirect("/DailyChallenge-war/profil.jsp");
         }
     }
 

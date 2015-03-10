@@ -7,22 +7,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
- *
  * @author Poloczek
  */
 
 @Entity
 @NamedQueries(
 {
-    /*
-    @NamedQuery(name = "Anwender.findById", query = "SELECT a FROM Anwender a WHERE a.id = :id"),
-    @NamedQuery(name = "Anwender.findByUser", query = "SELECT a FROM Anwender a WHERE a.username = :username"),
-    @NamedQuery(name = "Anwender.findByUserAndPassword", query = "SELECT a FROM Anwender a WHERE a.username = :username AND a.userpassword = :userpassword"),
-    @NamedQuery(name = "Anwender.GetScore", query = "SELECT a.score FROM Anwender a WHERE a.username = :username"),
-    @NamedQuery(name = "Anwender.GetEmail", query = "SELECT a.email FROM Anwender a WHERE a.email = :email")
-    */
+    @NamedQuery(name = "Challenge.findById", query = "SELECT c FROM Challenge c WHERE c.id = :id"),
+    @NamedQuery(name = "Challenge.findByBeschreibung", query = "SELECT c FROM Challenge c WHERE c.beschreibung = :beschreibung"),
+    
 })
 public class Challenge implements Serializable {
    
@@ -38,8 +34,7 @@ public class Challenge implements Serializable {
     public Challenge() {
     }
 
-    public Challenge(Long id, String beschreibung) {
-        this.id = id;
+    public Challenge(String beschreibung) {
         this.beschreibung = beschreibung;
     }
 
