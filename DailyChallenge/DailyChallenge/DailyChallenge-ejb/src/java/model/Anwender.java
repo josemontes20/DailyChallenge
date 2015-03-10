@@ -1,11 +1,14 @@
 package model;
 
+import java.util.List;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -44,78 +47,85 @@ public class Anwender implements Serializable {
     @Column 
     private int score;
     
-    
-    public Anwender (){
+    @ManyToMany
+    @JoinTable(name = "anwender_kategorien")
+    private List<Kategorie> anwender_kategorien;            
+
+    // Konstruktoren
+    public Anwender() {
     }
-    
-    public Anwender (String username, String userpassword, String email, int score){
+
+    public Anwender(String username, String userpassword, String email, int score) {
         this.username = username;
         this.userpassword = userpassword;
         this.email = email;
-        this.score = score;  
+        this.score = score;
     }
-    
-    public Long getId()
-    {
+
+    // Getter und Setter
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
     }
-        
-    public void setUserName(String username){
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
         this.username = username;
     }
-    
-    public String getUserName(){
-        return this.username;
+
+    public String getUserpassword() {
+        return userpassword;
     }
-    
-    public void setUserPassword(String userpassword){
+
+    public void setUserpassword(String userpassword) {
         this.userpassword = userpassword;
     }
-    
-    public String getUserPassword(){
-        return this.userpassword;
+
+    public String getEmail() {
+        return email;
     }
-    
-    public void setUserEmail(String email){
+
+    public void setEmail(String email) {
         this.email = email;
     }
-    
-    public String getUserEmail(){
-        return this.email;
+
+    public int getScore() {
+        return score;
     }
-    
-    public void setUserScore (int score){
+
+    public void setScore(int score) {
         this.score = score;
     }
-    
-    public int getUserScore (int score){
-        return this.score;
+
+    public List<Kategorie> getAnwender_kategorien() {
+        return anwender_kategorien;
+    }
+
+    public void setAnwender_kategorien(List<Kategorie> anwender_kategorien) {
+        this.anwender_kategorien = anwender_kategorien;
     }
     
+    // Andere Methoden
     @Override
-    public int hashCode()
-    {
+    public int hashCode(){
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
    @Override
-   public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Anwender))
-        {
+   public boolean equals(Object object){
+        if (!(object instanceof Anwender)){
             return false;
         }
         Anwender other = (Anwender) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
-        {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))){
             return false;
         }
         return true;

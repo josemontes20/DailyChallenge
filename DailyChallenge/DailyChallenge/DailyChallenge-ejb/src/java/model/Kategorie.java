@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -34,7 +35,12 @@ public class Kategorie implements Serializable {
     
     @OneToMany(mappedBy="kategorie", cascade={CascadeType.ALL})
     private List<Challenge> challenges;
+   
+    @ManyToMany(mappedBy = "anwender_kategorien")
+    private List<Anwender> anwender;
+
     
+    // Konstruktoren
     public Kategorie() {
     }
     
@@ -46,6 +52,24 @@ public class Kategorie implements Serializable {
         this.name = name;
         this.challenges = challenges;
     }
+
+    // Getter und Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Anwender> getAnwender() {
+        return anwender;
+    }
+
+    public void setAnwender(List<Anwender> anwender) {
+        this.anwender = anwender;
+    }
+    
 
     public String getName() {
         return name;
@@ -59,6 +83,7 @@ public class Kategorie implements Serializable {
         this.challenges = challenges;
     }
     
+    // Andere Methoden
     @Override
     public int hashCode() {
         int hash = 0;
