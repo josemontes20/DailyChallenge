@@ -14,11 +14,10 @@
     <body>
         
         <% 
-            String logon = (String) request.getAttribute("logon");
+            String logon = (String) request.getSession().getAttribute("logon");
             
             if(logon.equals("false")){
-                
-                //response.sendRedirect("/DailyChallenge-war/login.jsp");
+                response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
         %>
         

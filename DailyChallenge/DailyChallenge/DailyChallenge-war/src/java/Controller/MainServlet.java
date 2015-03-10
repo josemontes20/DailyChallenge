@@ -113,31 +113,29 @@ public class MainServlet extends HttpServlet {
             }
         }else if(tempStep.equalsIgnoreCase("abmelden")){
             request.removeAttribute("logon");
-            request.setAttribute("logon", "false");
-           
+            request.getSession().setAttribute("logon", "false");
+            response.sendRedirect("/DailyChallenge-war/login.jsp");
+            
             //Aufgrund eines GlassFish-Bugs, wird eine NullPointerException geworfen.
             /*try{
-                request.getSession().invalidate();
+                request.getSession(false).invalidate();
+                response.sendRedirect("/DailyChallenge-war/login.jsp");
             }catch(Exception ex){
                 System.out.println("GlassFishServerBug:" + ex);
             }*/
-            
+                             
+        }else if (tempStep.equalsIgnoreCase("profil")){
+            //Browser-Cache löschen, um ein Zurückgehen zu verhindern!
             response.setHeader("Cache-Control", "no-cache");
             response.setHeader("Cache-Control", "no-store");
             response.setDateHeader("Expires", 0);
             response.setHeader("Pragma", "no-cache");
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
-            //response.sendRedirect("/DailyChallenge-war/login.jsp");           
-                          
-        }else if (tempStep.equalsIgnoreCase("profil")){
-            
-            request.setAttribute("logon", "true");
-            request.getRequestDispatcher("/profil.jsp").forward(request, response);
-            //response.sendRedirect("/DailyChallenge-war/profil.jsp");
+    
+            request.getSession().setAttribute("logon", "true");
+            request.getRequestDispatcher("/profil.jsp").forward(request, response); 
         }
     }
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
