@@ -1,12 +1,12 @@
 package Controller;
 
+import model.Anwender;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import model.Anwender;
 
 /**
  * @author José Montes
@@ -16,38 +16,38 @@ import model.Anwender;
 
 @Stateless
 @LocalBean
-public class UserControl{
+public class AnwenderBean{
 
     @PersistenceContext (name = "DailyDB")
     private EntityManager em;
     
     /*Diese Methode ist für das Anlegen eines Anwenders in der Anwender-Tabelle verantwortlich.*/
     public Anwender createUser(String username, String userpassword, String email, int score){
-       
-        em.setFlushMode(FlushModeType.AUTO);   
         Anwender user = new Anwender(username, userpassword, email, score);
+
+        em.setFlushMode(FlushModeType.AUTO);   
         em.persist(user);
         user = em.merge(user);
         em.flush();
+        
         return user;
         
     }
     
     /*Mithilfe dieser Methode wird überprüft, ob die eingegebenen Anmeldedaten in der Anwender-Twbelle vorhanden sind.*/
     public Anwender loginUser(String username, String userpassword){
-        
         if(username == null || userpassword == null || username.isEmpty() || userpassword.isEmpty()){
             return null;
-        }else{
+        } else {
             TypedQuery<Anwender> abfrage = em.createNamedQuery("Anwender.findByUserAndPassword", Anwender.class)
             .setParameter("username", username)
             .setParameter("userpassword", userpassword);
             
-            if (abfrage.getResultList().isEmpty())
-        {
-            return null;
-        }
-        return abfrage.getSingleResult();
+            if (abfrage.getResultList().isEmpty()) {
+                return null;
+            }
+            
+            return abfrage.getSingleResult();
         }
     }
     
@@ -66,7 +66,6 @@ public class UserControl{
     */
     
     public String registerValide(String username, String email, String passwort, String passwordRepeat){
-        
         if (passwort.isEmpty() || passwordRepeat.isEmpty() || (!(passwort.equals(passwordRepeat))) ){
             return "PASSWORD NOT OK";
         }
@@ -79,7 +78,7 @@ public class UserControl{
                    return "USERNAME REPEAT";
                }
                
-        }else{
+        } else {
             return "USERNAME NOT NULL";
         }
 
@@ -93,7 +92,7 @@ public class UserControl{
                 else{
                     return "EMAIL REPEAT";
                 } 
-        }else{
+        } else {
              return "EMAIL NOT OK";
         }
                 

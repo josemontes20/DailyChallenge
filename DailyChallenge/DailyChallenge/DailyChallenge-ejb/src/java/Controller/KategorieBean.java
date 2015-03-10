@@ -1,7 +1,6 @@
 package Controller;
 
 import model.Kategorie;
-
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -21,10 +20,12 @@ public class KategorieBean {
     
     public Kategorie createKategorie(String beschreibung){
         Kategorie k = new Kategorie(beschreibung);
+
         em.setFlushMode(FlushModeType.AUTO);
         em.persist(k);
         k = em.merge(k);
         em.flush();
+        
         return k;
     }
     
