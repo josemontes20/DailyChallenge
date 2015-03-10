@@ -14,11 +14,18 @@
     <body>
         
         <% 
-            String logon = (String) request.getSession().getAttribute("logon");
+            //Browser-Cache löschen
+            response.addHeader("Cache-Control", "no-cache");
+            response.addHeader("Cache-Control", "no-store");
+            response.addDateHeader("Expires", 0);
+            response.addHeader("Pragma", "no-cache");
             
-            if(logon.equals("false")){
+            String user = (String) session.getAttribute("anwendername");
+            
+            if(user.equals("null")){
                 response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
+            
         %>
         
         <h1>Profileinstellungen!</h1>
@@ -26,7 +33,7 @@
         
         <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=abmelden">
             <p><input type="submit" value="Abmelden"/></p>
-            <p><%= logon%></p>
+            <p><%= user%></p>
         </form>
         
     </body>

@@ -22,20 +22,22 @@ import model.Anwender;
 public class MainServlet extends HttpServlet {
     
     @EJB
-    UserControl bean;
+    AnwenderBean bean;
         
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             
         String tempStep = request.getParameter("step");
-      
+        Anwender user;
+        HttpSession session = null;
+        
         if(tempStep.equalsIgnoreCase("anmelden")){
-            Anwender user = bean.loginUser(request.getParameter("username"),
+             user = bean.loginUser(request.getParameter("username"),
                                        request.getParameter("userpassword"));
             
             if (user != null){
-                HttpSession session = request.getSession();
+                session = request.getSession();
                 session.setMaxInactiveInterval(30*60);
-                session.setAttribute("anwendername", user.getUserName());
+                session.setAttribute("anwendername", user.getUsername());
                 
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
             }else{
@@ -55,16 +57,16 @@ public class MainServlet extends HttpServlet {
                 case "OK":
                     {
                         int iniscore = 0;
-                        Anwender user = bean.createUser(
+                        user = bean.createUser(
                                     request.getParameter("username"),
                                     request.getParameter("userpassword"),
                                     request.getParameter("email"),
                                     iniscore);
                     
-                        HttpSession session = request.getSession();
+                        session = request.getSession();
                         session.setMaxInactiveInterval(30*60);
-                        session.setAttribute("anwendername", user.getUserName());
-
+                        session.setAttribute("anwendername", user.getUsername());
+            
                         response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                         break;
                     }
@@ -112,8 +114,8 @@ public class MainServlet extends HttpServlet {
                     }
             }
         }else if(tempStep.equalsIgnoreCase("abmelden")){
-            request.removeAttribute("logon");
-            request.getSession().setAttribute("logon", "false");
+            
+            request.getSession().setAttribute("anwendername", "null");
             response.sendRedirect("/DailyChallenge-war/login.jsp");
             
             //Aufgrund eines GlassFish-Bugs, wird eine NullPointerException geworfen.
@@ -125,13 +127,6 @@ public class MainServlet extends HttpServlet {
             }*/
                              
         }else if (tempStep.equalsIgnoreCase("profil")){
-            //Browser-Cache löschen, um ein Zurückgehen zu verhindern!
-            response.setHeader("Cache-Control", "no-cache");
-            response.setHeader("Cache-Control", "no-store");
-            response.setDateHeader("Expires", 0);
-            response.setHeader("Pragma", "no-cache");
-    
-            request.getSession().setAttribute("logon", "true");
             request.getRequestDispatcher("/profil.jsp").forward(request, response); 
         }
     }
