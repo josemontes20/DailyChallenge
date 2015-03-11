@@ -1,5 +1,6 @@
 package Controller;
 
+import java.util.Collection;
 import model.Kategorie;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -31,13 +32,15 @@ public class KategorieBean {
         return k;
     }
     
-    public List<Kategorie> getAllKategorien(){
-        TypedQuery<Kategorie> kategorien = em.createNamedQuery("Kategorie.getAllKategorie", Kategorie.class);
+    public Collection<Kategorie> getAllKategorien(){
+        TypedQuery<Kategorie> kategorien = em.createNamedQuery("Kategorie.getAllKategorie", Kategorie.class);        
         return kategorien.getResultList();
     }
     
-    public List<Kategorie> getAllKategorienVonAnwender(String username){
-        throw new RuntimeException("Noch nicht implementiert");
+    public Collection<Kategorie> getAllKategorienByUser(Long id){
+        TypedQuery<Kategorie> kategorien = em.createNamedQuery("Kategorie.getAllKategorieByUser", Kategorie.class)
+                .setParameter("id", id);
+        return kategorien.getResultList();
     }
     
 }
