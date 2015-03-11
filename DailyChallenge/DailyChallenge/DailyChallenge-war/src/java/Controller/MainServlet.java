@@ -46,9 +46,9 @@ public class MainServlet extends HttpServlet {
                 request.getSession().setMaxInactiveInterval(30*60);
                 request.getSession().setAttribute("anwendername", user.getUsername());
                 
-                Long id = user.getId();
+            /*    Long id = user.getId();
                 Collection<Challenge> challenges = challenges = chaBean.getAllChallengesByUser(id);
-                request.getSession().setAttribute("challenges", challenges);
+                request.getSession().setAttribute("challenges", challenges);*/
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                 
             }else{
@@ -140,8 +140,15 @@ public class MainServlet extends HttpServlet {
             response.sendRedirect("/DailyChallenge-war/profil.jsp");
             
         }else if(tempStep.equalsIgnoreCase("loeschen_profil")){
-            if(bean.deleteUser((String)request.getSession().getAttribute("anwendername")))
-                response.sendRedirect("/DailyChallenge-war/userdel.html");
+            int deleteStatus = bean.deleteUser((String)request.getSession().getAttribute("anwendername"));
+            
+            if(deleteStatus == 1){
+                request.getSession().setAttribute("anwendername", "null");
+                response.sendRedirect("/DailyChallenge-war/userdel.jsp");
+            }else{
+                response.sendRedirect("/DailyChallenge-war/userdel_error.jsp");
+            }
+                
             
         }
     }

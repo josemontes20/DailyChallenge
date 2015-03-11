@@ -1,9 +1,14 @@
-<%@page import="java.util.Collection"%>
-<%@page import="model.Challenge"%>
+<%-- 
+    Document   : userdel
+    Created on : 11.03.2015, 17:10:29
+    Author     : José Montes
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+         <head>
         <title>Daily Challenge</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,14 +28,8 @@
             response.addDateHeader("Expires", 0);
             response.addHeader("Pragma", "no-cache");
 
-            String user = (String) session.getAttribute("anwendername");
-
-            if (user.equals("null")) {
-                response.sendRedirect("/DailyChallenge-war/login.jsp");
-            }
-
         %>
-
+        
         <!-- Navbar -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container" style="padding-left: 35px;">
@@ -41,12 +40,11 @@
                 </div>
                 <div>
                     <ul class="nav navbar-nav">
-                        <li><a href="/DailyChallenge-war/profil.jsp" style="font-size: 18px; font-weight: bold; color: #3e84c0">Profil</a></li> 
+                        <li><a href="/DailyChallenge-war/register.jsp" style="font-size: 18px; font-weight: bold; color: #3e84c0">Registrieren</a></li> 
                     </ul>
-                    
                     <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
-                        <li style="font-size: 18px; font-weight: bold; margin-top: 12px; color: #646464">Nicht <%= user%>?</li>
-                        <li><a href="/DailyChallenge-war/mainservlet?step=abmelden" style="font-size: 18px; font-weight: bold; color: #3e84c0">Abmelden!</a></li>
+                        <li style="font-size: 18px; font-weight: bold; margin-top: 12px; color: #646464">Bereits Registriert?</li>
+                        <li><a href="/DailyChallenge-war/login.jsp" style="font-size: 18px; font-weight: bold; color: #3e84c0">Anmelden!</a></li>
                     </ul>
                 </div>
             </div>
@@ -54,11 +52,8 @@
         <!-- Inhalt -->
         <div class="container">
             <div class="jumbotron">
-                <h1>Servus, <%= user%>!</h1>
-                <h2>Deine heutigen Challenges!</h2>
-                <ol>
-                              
-                </ol>
+                <p> Ciaosen, Pimmel! </p>
+                <a class="btn btn-lg btn-primary" href="/DailyChallenge-war/mainpage.jsp">zur Startseite</a>
             </div>
         </div>
     </body>

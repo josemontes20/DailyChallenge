@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -103,15 +104,11 @@ public class AnwenderBean{
     }
     
     //Anwender wird aus der ANWENDER-Tabelle geloescht
-    public boolean deleteUser(String username){
-        Anwender user = em.find(Anwender.class, username);
+    public int deleteUser(String username){
+        Query q = em.createNamedQuery("Anwender.deleteUser", Anwender.class).setParameter("username", username);
         
-        em.getTransaction().begin();
-        em.remove(user);
-        em.getTransaction().commit();
-        
-        TypedQuery<Anwender> abfrageUser = em.createNamedQuery("findByUser", Anwender.class).setParameter("username", username);
-        
-        return abfrageUser.getResultList().isEmpty();
+        return q.executeUpdate();
     }
+    
+    
 }
