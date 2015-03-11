@@ -51,7 +51,6 @@ public class AnwenderBean{
         }
     }
     
-    
     /*Diese Methode überprüft sämtliche Eingaben die der Anwender bei der Registrierung eingibt.
     Dabei werden sämtliche Designanforderung der [BA 1/SA 1] umgesetzt.
     
@@ -95,11 +94,10 @@ public class AnwenderBean{
         } else {
              return "EMAIL NOT OK";
         }
-                
     }
     
-    /** Überprüfung des Mail-Formats mithilfe eines endlichen Automats.*/
-    protected boolean checkMailPattern(String email){
+    // Überprüfung des Mail-Formats mithilfe eines endlichen Automats
+    public boolean checkMailPattern(String email){
         String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(EMAIL_REGEX);
     }
