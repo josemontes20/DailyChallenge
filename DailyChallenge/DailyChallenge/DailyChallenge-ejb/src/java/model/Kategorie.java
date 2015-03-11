@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import java.util.List;
@@ -15,13 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 /**
  * @author José Montes
  */
-
-
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Kategorie.getAllKategorie", query = "SELECT k FROM Kategorie k"),    
+    @NamedQuery(name = "Kategorie.getAllKategorienVonAnwender", query = "SELECT k FROM Kategorie k")    
+})
 public class Kategorie implements Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -38,7 +36,6 @@ public class Kategorie implements Serializable {
    
     @ManyToMany(mappedBy = "anwender_kategorien")
     private List<Anwender> anwender;
-
     
     // Konstruktoren
     public Kategorie() {
@@ -61,7 +58,7 @@ public class Kategorie implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public List<Anwender> getAnwender() {
         return anwender;
     }
@@ -69,7 +66,6 @@ public class Kategorie implements Serializable {
     public void setAnwender(List<Anwender> anwender) {
         this.anwender = anwender;
     }
-    
 
     public String getName() {
         return name;

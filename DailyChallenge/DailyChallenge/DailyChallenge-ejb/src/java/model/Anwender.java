@@ -47,10 +47,11 @@ public class Anwender implements Serializable {
     @Column 
     private int score;
     
+    
     @ManyToMany
     @JoinTable(name = "anwender_kategorien")
     private List<Kategorie> anwender_kategorien;            
-
+    
     // Konstruktoren
     public Anwender() {
     }
