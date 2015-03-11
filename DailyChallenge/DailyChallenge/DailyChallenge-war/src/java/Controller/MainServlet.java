@@ -7,6 +7,7 @@ package Controller;
 
 import model.Anwender;
 import model.Kategorie;
+import model.Challenge;
 
 import java.util.Collection;
 import java.io.IOException;
@@ -29,6 +30,10 @@ public class MainServlet extends HttpServlet {
     @EJB
     KategorieBean katBean;
         
+    @EJB
+    ChallengeBean chaBean;
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String tempStep = request.getParameter("step");
@@ -41,8 +46,9 @@ public class MainServlet extends HttpServlet {
                 request.getSession().setMaxInactiveInterval(30*60);
                 request.getSession().setAttribute("anwendername", user.getUsername());
                 
-                Collection<Kategorie> kategorien = katBean.getAllKategorienByUser(user.getId());
-                request.getSession().setAttribute("kategorien", kategorien);
+                Long id = user.getId();
+                Collection<Challenge> challenges = challenges = chaBean.getAllChallengesByUser(id);
+                request.getSession().setAttribute("challenges", challenges);
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                 
             }else{

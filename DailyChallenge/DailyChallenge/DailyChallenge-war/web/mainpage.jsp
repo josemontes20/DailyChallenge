@@ -1,5 +1,5 @@
 <%@page import="java.util.Collection"%>
-<%@page import="model.Kategorie"%>
+<%@page import="model.Challenge"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -58,11 +58,12 @@
                 <h2>Deine heutigen Challenges!</h2>
                 <ol>
                     <%
-                        Collection<Kategorie> kategorien = (Collection)request.getSession().getAttribute("kategorien");
-                        for (Kategorie kat : kategorien) { 
-                            %> <li> <%= kat.getName() %> </li> <%
+                        Collection<Challenge> challenges = (Collection)request.getSession().getAttribute("challenges");
+                        for (Challenge cha : challenges) { 
+                            %> <li> <%= cha.getBeschreibung() %> </li> <%
                         }
-                    %>                </ol>
+                    %>               
+                </ol>
             </div>
         </div>
     </body>
