@@ -19,8 +19,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries(
 {
-    @NamedQuery(name = "Challenge.findById", query = "SELECT c FROM Challenge c WHERE c.id = :id")
-    
+    @NamedQuery(name = "Challenge.findByAnwenderId", query = "SELECT c FROM Challenge c INNER JOIN c.kategorie k, k.anwender a WHERE a.id = :id AND k.id = c.kategorie.id")
 })
 public class Challenge implements Serializable {
    
