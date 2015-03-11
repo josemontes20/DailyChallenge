@@ -34,8 +34,8 @@ public class Kategorie implements Serializable {
     @OneToMany(mappedBy="kategorie", cascade={CascadeType.ALL})
     private List<Challenge> challenges;
    
-    @ManyToMany(mappedBy = "anwender_kategorien")
-    private List<Anwender> anwender;
+    @ManyToMany(mappedBy = "kategorie") // <- Name der Spalte in "ANWENDER_KATEGORIEN", 
+    private List<Anwender> anwender;    //    muss übereinstimmen mit dem Variablennamen in Anwender.java
     
     // Konstruktoren
     public Kategorie() {
