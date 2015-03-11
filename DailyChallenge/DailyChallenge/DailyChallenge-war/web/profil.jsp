@@ -33,7 +33,10 @@
         
         <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=abmelden">
             <p><input type="submit" value="Abmelden"/></p>
-            <p><%= user%></p>
+        </form>
+        
+        <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainpage.jsp">
+            <p><input type="submit" value="haupt"/></p>
         </form>
         
     </body>
