@@ -39,5 +39,8 @@
             <p><input type="submit" value="haupt"/></p>
         </form>
         
+        <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=loeschen_profil">
+            <p><input type="submit" value="Löschen"/></p>
+        </form>
     </body>
 </html>

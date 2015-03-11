@@ -27,19 +27,16 @@ public class MainServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             
         String tempStep = request.getParameter("step");
-        Anwender user;
-        HttpSession session = null;
         
         if(tempStep.equalsIgnoreCase("anmelden")){
-             user = bean.loginUser(request.getParameter("username"),
+             Anwender user = bean.loginUser(request.getParameter("username"),
                                        request.getParameter("userpassword"));
             
             if (user != null){
-                session = request.getSession();
-                session.setMaxInactiveInterval(30*60);
-                session.setAttribute("anwendername", user.getUsername());
-                
+                request.getSession().setMaxInactiveInterval(30*60);
+                request.getSession().setAttribute("anwendername", user.getUsername());
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
+                
             }else{
                 response.sendRedirect("/DailyChallenge-war/login_error.html");
             }
@@ -57,15 +54,14 @@ public class MainServlet extends HttpServlet {
                 case "OK":
                     {
                         int iniscore = 0;
-                        user = bean.createUser(
+                        Anwender user = bean.createUser(
                                     request.getParameter("username"),
                                     request.getParameter("userpassword"),
                                     request.getParameter("email"),
                                     iniscore);
                     
-                        session = request.getSession();
-                        session.setMaxInactiveInterval(30*60);
-                        session.setAttribute("anwendername", user.getUsername());
+                        request.getSession().setMaxInactiveInterval(30*60);
+                        request.getSession().setAttribute("anwendername", user.getUsername());
             
                         response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                         break;
@@ -128,6 +124,11 @@ public class MainServlet extends HttpServlet {
                              
         }else if (tempStep.equalsIgnoreCase("profil")){
             response.sendRedirect("/DailyChallenge-war/profil.jsp");
+            
+        }else if(tempStep.equalsIgnoreCase("loeschen_profil")){
+            if(bean.anwenderLoeschen((String)request.getSession().getAttribute("anwendername")))
+                response.sendRedirect("/DailyChallenge-war/userdel.html");
+            
         }
     }
 

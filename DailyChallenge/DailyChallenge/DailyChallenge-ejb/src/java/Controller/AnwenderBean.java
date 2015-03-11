@@ -101,4 +101,17 @@ public class AnwenderBean{
         String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(EMAIL_REGEX);
     }
+    
+    //Anwender wird aus der ANWENDER-Tabelle geloescht
+    public boolean anwenderLoeschen(String username){
+        Anwender user = em.find(Anwender.class, username);
+        
+        em.getTransaction().begin();
+        em.remove(user);
+        em.getTransaction().commit();
+        
+        TypedQuery<Anwender> abfrageUser = em.createNamedQuery("findByUser", Anwender.class).setParameter("username", username);
+        
+        return abfrageUser.getResultList().isEmpty();
+    }
 }
