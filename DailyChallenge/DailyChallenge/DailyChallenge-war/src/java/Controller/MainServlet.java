@@ -73,43 +73,43 @@ public class MainServlet extends HttpServlet {
                 case "USERNAME NOT NULL":
                     {
                         String errorUser = "Du hast keinen Benutzernamen eingegeben!";
-                        request.setAttribute("error", errorUser);
-                        request.getRequestDispatcher("/register_error.jsp").forward(request, response);
+                        request.getSession().setAttribute("error", errorUser);
+                        response.sendRedirect("/DailyChallenge-war/register_error.jsp");
                         break;
                     }
                 case "USERNAME REPEAT":
                     {
                         String errorUser = "Dein Benutzername wird leider schon verwendet!";
-                        request.setAttribute("error", errorUser);
-                        request.getRequestDispatcher("/register_error.jsp").forward(request, response);
+                        request.getSession().setAttribute("error", errorUser);
+                        response.sendRedirect("/DailyChallenge-war/register_error.jsp");
                         break;
                     }
                 case "EMAIL NOT OK":
                     {
                         String errorEmail = "Gib bitte eine gültige E-Mail Adresse ein!";
-                        request.setAttribute("error", errorEmail);
-                        request.getRequestDispatcher("/register_error.jsp").forward(request, response);
+                        request.getSession().setAttribute("error", errorEmail);
+                        response.sendRedirect("/DailyChallenge-war/register_error.jsp");
                         break;
                     }
                 case "EMAIL REPEAT":
                     {
                         String errorEmail = "Es gibt bereits einen Benutzer mit dieser E-Mail Adresse!";
-                        request.setAttribute("error", errorEmail);
-                        request.getRequestDispatcher("/register_error.jsp").forward(request, response);
+                        request.getSession().setAttribute("error", errorEmail);
+                        response.sendRedirect("/DailyChallenge-war/register_error.jsp");
                         break;
                     }
                 case "PASSWORD NOT OK":
                     {
                         String errorPassword = "Es gab einen Fehler mit deinem Passwort!";
-                        request.setAttribute("error", errorPassword);
-                        request.getRequestDispatcher("/register_error.jsp").forward(request, response);
+                        request.getSession().setAttribute("error", errorPassword);
+                        response.sendRedirect("/DailyChallenge-war/register_error.jsp");
                         break;
                     }
                 default:
                     {
                         String errorRegister = "Deine Registrierung ist leider fehlgeschlagen!";
-                        request.setAttribute("error", errorRegister);
-                        request.getRequestDispatcher("/register_error.jsp").forward(request, response);
+                        request.getSession().setAttribute("error", errorRegister);
+                        response.sendRedirect("/DailyChallenge-war/register_error.jsp");
                         break;
                     }
             }
