@@ -57,7 +57,12 @@
                 <h1>Servus, <%= user%>!</h1>
                 <h2>Deine heutigen Challenges!</h2>
                 <ol>
-                              
+                    <%
+                        Collection<Challenge> challenges = (Collection)request.getSession().getAttribute("challenges");
+                        for (Challenge cha : challenges) { 
+                            %> <li> <%= cha.getBeschreibung() %> </li> <%
+                        }
+                    %>            
                 </ol>
             </div>
         </div>
