@@ -126,7 +126,7 @@ public class MainServlet extends HttpServlet {
             response.sendRedirect("/DailyChallenge-war/profil.jsp");
             
         }else if(tempStep.equalsIgnoreCase("loeschen_profil")){
-            if(bean.anwenderLoeschen((String)request.getSession().getAttribute("anwendername")))
+            if(bean.deleteUser((String)request.getSession().getAttribute("anwendername")))
                 response.sendRedirect("/DailyChallenge-war/userdel.html");
             
         }
