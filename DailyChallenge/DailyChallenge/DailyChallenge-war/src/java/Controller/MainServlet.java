@@ -5,6 +5,10 @@
  */
 package Controller;
 
+import model.Anwender;
+import model.Kategorie;
+
+import java.util.Collection;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -12,8 +16,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Anwender;
 
 /**
  * @author José Montes
@@ -23,9 +25,12 @@ public class MainServlet extends HttpServlet {
     
     @EJB
     AnwenderBean bean;
+    
+    @EJB
+    KategorieBean katBean;
         
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            
+
         String tempStep = request.getParameter("step");
         
         if(tempStep.equalsIgnoreCase("anmelden")){
@@ -35,6 +40,9 @@ public class MainServlet extends HttpServlet {
             if (user != null){
                 request.getSession().setMaxInactiveInterval(30*60);
                 request.getSession().setAttribute("anwendername", user.getUsername());
+                
+                Collection<Kategorie> kategorien = katBean.getAllKategorienByUser(user.getId());
+                request.getSession().setAttribute("kategorien", kategorien);
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                 
             }else{

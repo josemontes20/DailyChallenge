@@ -1,3 +1,5 @@
+<%@page import="java.util.Collection"%>
+<%@page import="model.Kategorie"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -53,12 +55,13 @@
                 <h1>Servus, <%= user%>!</h1>
                 <h2>Deine heutigen Challenges!</h2>
                 <ol>
-                    <li>...</li> 
-                    <li>...</li> 
-                    <li>...</li> 
+                    <%
+                        Collection<Kategorie> kategorien = (Collection)request.getSession().getAttribute("kategorien");
+                        for (Kategorie kat : kategorien) { 
+                            %> <li> <%= kat.getName() %> </li> <%
+                        }
+                    %>y
                 </ol>
-
-
             </div>
         </div>
     </body>
