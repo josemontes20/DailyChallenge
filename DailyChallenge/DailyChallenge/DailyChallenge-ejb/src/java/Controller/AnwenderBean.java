@@ -103,7 +103,7 @@ public class AnwenderBean{
     }
     
     //Anwender wird aus der ANWENDER-Tabelle geloescht
-    public boolean anwenderLoeschen(String username){
+    public boolean deleteUser(String username){
         Anwender user = em.find(Anwender.class, username);
         
         em.getTransaction().begin();
