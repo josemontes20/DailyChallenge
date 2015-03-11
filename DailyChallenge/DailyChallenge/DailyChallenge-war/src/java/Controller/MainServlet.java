@@ -127,7 +127,7 @@ public class MainServlet extends HttpServlet {
             }*/
                              
         }else if (tempStep.equalsIgnoreCase("profil")){
-            request.getRequestDispatcher("/profil.jsp").forward(request, response); 
+            response.sendRedirect("/DailyChallenge-war/profil.jsp");
         }
     }
 
