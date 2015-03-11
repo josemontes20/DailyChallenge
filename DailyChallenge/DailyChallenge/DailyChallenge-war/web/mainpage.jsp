@@ -60,8 +60,7 @@
                         for (Kategorie kat : kategorien) { 
                             %> <li> <%= kat.getName() %> </li> <%
                         }
-                    %>y
-                </ol>
+                    %>                </ol>
             </div>
         </div>
     </body>
