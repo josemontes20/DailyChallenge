@@ -50,7 +50,7 @@ public class Anwender implements Serializable {
     
     @ManyToMany
     @JoinTable(name = "anwender_kategorien")
-    private List<Kategorie> anwender_kategorien;            
+    private List<Kategorie> kategorie;            
     
     // Konstruktoren
     public Anwender() {
@@ -105,11 +105,11 @@ public class Anwender implements Serializable {
     }
 
     public List<Kategorie> getAnwender_kategorien() {
-        return anwender_kategorien;
+        return kategorie;
     }
 
     public void setAnwender_kategorien(List<Kategorie> anwender_kategorien) {
-        this.anwender_kategorien = anwender_kategorien;
+        this.kategorie = anwender_kategorien;
     }
     
     // Andere Methoden
