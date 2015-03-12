@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +20,10 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries(
 {
-    @NamedQuery(name = "Challenge.findByAnwenderId", query = "SELECT c FROM Challenge c INNER JOIN c.kategorie k, k.anwender a WHERE a.id = :id AND k.id = c.kategorie.id")
+    @NamedQuery(name = "Challenge.findByAnwenderId", query = "SELECT c FROM Challenge c INNER JOIN c.kategorie k, k.anwender a WHERE a.id = :id AND k.id = c.kategorie.id"),
+    @NamedQuery(name = "Challenge.findChallengesByDate", query = "SELECT c FROM Challenge c WHERE c.aktivAmDatum = :aktivAmDatum"),
+    @NamedQuery(name = "Challenge.findUnusedChallengesByKategorie", query = "SELECT c FROM Challenge c WHERE c.aktivAmDatum IS NULL AND c.kategorie.id = :kategorie_id"),
+    @NamedQuery(name = "Challenge.updateAsTodaysChallenge", query = "UPDATE Challenge c SET c.aktivAmDatum = :aktivAmDatum")
 })
 public class Challenge implements Serializable {
    
@@ -31,15 +35,29 @@ public class Challenge implements Serializable {
     
     @Column
     private String beschreibung;
-
+    
+    @Column
+    private String aktivAmDatum;
+            
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "kategorie_id")
     private Kategorie kategorie;
+
+    // Konstruktoren
     public Challenge() {
     }
 
     public Challenge(String beschreibung) {
         this.beschreibung = beschreibung;
+    }
+
+    // Getter und Setter
+    public String getAktivAmDatum() {
+        return aktivAmDatum;
+    }
+
+    public void setAktivAmDatum(String aktivAmDatum) {
+        this.aktivAmDatum = aktivAmDatum;
     }
 
     public Long getId() {

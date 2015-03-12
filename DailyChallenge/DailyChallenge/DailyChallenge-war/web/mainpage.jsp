@@ -1,4 +1,4 @@
-<%@page import="java.util.Collection"%>
+<%@page import="java.util.List"%>
 <%@page import="model.Challenge"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -58,9 +58,14 @@
                 <h2>Deine heutigen Challenges!</h2>
                 <ol>
                     <%
-                        Collection<Challenge> challenges = (Collection)request.getSession().getAttribute("challenges");
-                        for (Challenge cha : challenges) { 
-                            %> <li> <%= cha.getBeschreibung() %> </li> <%
+                        List<Challenge> challenges = (List)request.getSession().getAttribute("challenges");
+                        
+                        if(!challenges.isEmpty()){
+                            for (Challenge cha : challenges) { 
+                                %> <li> <%= cha.getBeschreibung() %> </li> <%
+                            }
+                        }else {
+                            %> <h4> Noch keine Challenges? Dann schnell in deinem Profil Kategorien wählen!</h4> <%
                         }
                     %>            
                 </ol>

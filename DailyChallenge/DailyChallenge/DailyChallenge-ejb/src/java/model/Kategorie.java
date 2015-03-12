@@ -28,7 +28,7 @@ public class Kategorie implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(name="name", nullable=false, unique = true, length = 20)
+    @Column(name="name", nullable=false, unique = true)
     private String name;
     
     @OneToMany(mappedBy="kategorie", cascade={CascadeType.ALL})

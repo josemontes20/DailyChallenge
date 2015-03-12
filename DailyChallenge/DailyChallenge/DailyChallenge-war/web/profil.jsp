@@ -1,3 +1,5 @@
+<%@page import="model.Kategorie"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +23,7 @@
             response.addDateHeader("Expires", 0);
             response.addHeader("Pragma", "no-cache");
 
-            String user = (String) session.getAttribute("anwendername");
+            String user = (String) request.getSession().getAttribute("anwendername");
 
             if (user.equals("null")) {
                 response.sendRedirect("/DailyChallenge-war/login.jsp");
@@ -54,6 +56,26 @@
             <div class="jumbotron">
                 <h1>Profileinstellungen!</h1>        
                 <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/mainservlet?step=loeschen_profil">Profil löschen</a>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="jumbotron">
+                <h2>Kategorien</h2>
+                <ol>
+                    <%
+                        List<Kategorie> kategorien = (List)request.getSession().getAttribute("kategorien");
+
+                        if (!kategorien.isEmpty()){
+
+                            for (Kategorie kat : kategorien) { 
+                                %> <li> <%= kat.getName()%> </li> <%
+                            }
+                        }else{
+                            %> <h4> Keine Kategorien vorhanden! </h4> <%
+                        }
+                    %>
+                </ol>
             </div>
         </div>
     </body>
