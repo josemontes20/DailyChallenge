@@ -9,8 +9,8 @@ import model.Anwender;
 import model.Kategorie;
 import model.Challenge;
 
-import java.util.Collection;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MainServlet extends HttpServlet {
     
     @EJB
-    AnwenderBean bean;
+    AnwenderBean anwbean;
     
     @EJB
     KategorieBean katBean;
@@ -39,16 +39,16 @@ public class MainServlet extends HttpServlet {
         String tempStep = request.getParameter("step");
         
         if(tempStep.equalsIgnoreCase("anmelden")){
-             Anwender user = bean.loginUser(request.getParameter("username"),
+             Anwender user = anwbean.loginUser(request.getParameter("username"),
                                        request.getParameter("userpassword"));
             
             if (user != null){
                 request.getSession().setMaxInactiveInterval(30*60);
                 request.getSession().setAttribute("anwendername", user.getUsername());
                 
-            /*    Long id = user.getId();
-                Collection<Challenge> challenges = challenges = chaBean.getAllChallengesByUser(id);
-                request.getSession().setAttribute("challenges", challenges);*/
+                List<Challenge> challenges = challenges = chaBean.getAllChallengesByUser(user);
+                request.getSession().setAttribute("challenges", challenges);
+                
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                 
             }else{
@@ -58,7 +58,7 @@ public class MainServlet extends HttpServlet {
             
         }else if(tempStep.equalsIgnoreCase("registrieren")){
             
-            String registerResult = bean.registerValide(
+            String registerResult = anwbean.registerValide(
                                     request.getParameter("username"),
                                     request.getParameter("email"),
                                     request.getParameter("userpassword"),
@@ -68,7 +68,7 @@ public class MainServlet extends HttpServlet {
                 case "OK":
                     {
                         int iniscore = 0;
-                        Anwender user = bean.createUser(
+                        Anwender user = anwbean.createUser(
                                     request.getParameter("username"),
                                     request.getParameter("userpassword"),
                                     request.getParameter("email"),
@@ -76,7 +76,10 @@ public class MainServlet extends HttpServlet {
                     
                         request.getSession().setMaxInactiveInterval(30*60);
                         request.getSession().setAttribute("anwendername", user.getUsername());
-            
+                        
+                        List<Challenge> challenges = challenges = chaBean.getAllChallengesByUser(user);
+                        request.getSession().setAttribute("challenges", challenges);
+                    
                         response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                         break;
                     }
@@ -137,10 +140,15 @@ public class MainServlet extends HttpServlet {
             }*/
                              
         }else if (tempStep.equalsIgnoreCase("profil")){
+            
+            List<Kategorie>kategorien = katBean.getAllKategorien();
+            request.getSession().setAttribute("kategorien", kategorien);
+            
             response.sendRedirect("/DailyChallenge-war/profil.jsp");
             
+            
         }else if(tempStep.equalsIgnoreCase("loeschen_profil")){
-            int deleteStatus = bean.deleteUser((String)request.getSession().getAttribute("anwendername"));
+            int deleteStatus = anwbean.deleteUser((String)request.getSession().getAttribute("anwendername"));
             
             if(deleteStatus == 1){
                 request.getSession().setAttribute("anwendername", "null");

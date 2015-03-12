@@ -42,7 +42,7 @@ public class Anwender implements Serializable {
     @Column 
     private String userpassword;
     
-    @Column 
+    @Column (unique = true, nullable = false)
     private String email;
     
     @Column 
