@@ -1,7 +1,9 @@
 package Controller;
 
-import java.util.Collection;
 import model.Kategorie;
+import model.Anwender;
+
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -41,6 +43,10 @@ public class KategorieBean {
         TypedQuery<Kategorie> kategorien = em.createNamedQuery("Kategorie.getAllKategorieByUser", Kategorie.class)
                 .setParameter("id", id);
         return kategorien.getResultList();
+    }
+    
+    public Collection<Kategorie> getAllKategorienByUser(Anwender anwender){
+        return getAllKategorienByUser(anwender.getId());
     }
     
 }

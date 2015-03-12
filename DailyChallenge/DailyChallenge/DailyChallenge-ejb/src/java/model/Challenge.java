@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,15 +32,29 @@ public class Challenge implements Serializable {
     
     @Column
     private String beschreibung;
-
+    
+    @Column
+    private String aktivAmDatum;
+            
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "kategorie_id")
     private Kategorie kategorie;
+
+    // Konstruktoren
     public Challenge() {
     }
 
     public Challenge(String beschreibung) {
         this.beschreibung = beschreibung;
+    }
+
+    // Getter und Setter
+    public String getAktivAmDatum() {
+        return aktivAmDatum;
+    }
+
+    public void setAktivAmDatum(String aktivAmDatum) {
+        this.aktivAmDatum = aktivAmDatum;
     }
 
     public Long getId() {
