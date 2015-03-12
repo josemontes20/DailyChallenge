@@ -36,7 +36,7 @@ public class Anwender implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String username;
     
     @Column 

@@ -3,7 +3,6 @@ package Controller;
 import model.Kategorie;
 import model.Anwender;
 
-import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -34,19 +33,19 @@ public class KategorieBean {
         return k;
     }
     
-    public Collection<Kategorie> getAllKategorien(){
+    public List<Kategorie> getAllKategorien(){
         TypedQuery<Kategorie> kategorien = em.createNamedQuery("Kategorie.getAllKategorie", Kategorie.class);        
         return kategorien.getResultList();
     }
     
-    public Collection<Kategorie> getAllKategorienByUser(Long id){
+    public List<Kategorie> getAllKategorienByUser(Long id){
         TypedQuery<Kategorie> kategorien = em.createNamedQuery("Kategorie.getAllKategorieByUser", Kategorie.class)
                 .setParameter("id", id);
         return kategorien.getResultList();
     }
     
-    public Collection<Kategorie> getAllKategorienByUser(Anwender anwender){
+    public List<Kategorie> getAllKategorienByUser(Anwender anwender){
         return getAllKategorienByUser(anwender.getId());
     }
-    
+
 }
