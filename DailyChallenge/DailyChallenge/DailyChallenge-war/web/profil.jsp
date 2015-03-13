@@ -23,8 +23,8 @@
             response.addDateHeader("Expires", 0);
             response.addHeader("Pragma", "no-cache");
 
-            String user = (String) request.getSession().getAttribute("anwendername");
-
+            String user = (String) request.getSession().getAttribute("anwendername");       
+            
             if (user.equals("null")) {
                 response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
@@ -63,17 +63,17 @@
             <div class="jumbotron">
                 <h2>Kategorien</h2>
                 <ol>
-                    <%
-                        List<Kategorie> kategorien = (List)request.getSession().getAttribute("kategorien");
+                    <%                       
+                         List<Kategorie> kategorien = (List)request.getSession().getAttribute("kategorien");
+                         
+                        if (kategorien != null && !kategorien.isEmpty()){
 
-                        if (!kategorien.isEmpty()){
-
-                            for (Kategorie kat : kategorien) { 
-                                %> <li> <%= kat.getName()%> </li> <%
+                           for (Kategorie kat : kategorien) { 
+                              %> <li> <%= kat.getName()%> </li> <%
                             }
-                        }else{
+                       }else{
                             %> <h4> Keine Kategorien vorhanden! </h4> <%
-                        }
+                       }
                     %>
                 </ol>
             </div>

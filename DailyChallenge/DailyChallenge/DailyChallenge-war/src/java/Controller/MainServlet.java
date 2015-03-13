@@ -141,7 +141,7 @@ public class MainServlet extends HttpServlet {
                              
         }else if (tempStep.equalsIgnoreCase("profil")){
             
-            List<Kategorie>kategorien = katBean.getAllKategorien();
+            List<Kategorie> kategorien = katBean.getAllKategorien();
             request.getSession().setAttribute("kategorien", kategorien);
             
             response.sendRedirect("/DailyChallenge-war/profil.jsp");
