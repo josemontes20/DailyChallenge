@@ -47,5 +47,10 @@ public class KategorieBean {
     public List<Kategorie> getAllKategorienByUser(Anwender anwender){
         return getAllKategorienByUser(anwender.getId());
     }
+    
+    public Kategorie getKategorieByName (String name){
+        TypedQuery<Kategorie> kategorie = em.createNamedQuery("Kategorie.getKategorieByName", Kategorie.class).setParameter("name", name);
+        return kategorie.getSingleResult();
+    }
 
 }

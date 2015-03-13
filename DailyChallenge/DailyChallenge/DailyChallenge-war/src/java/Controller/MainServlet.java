@@ -158,6 +158,22 @@ public class MainServlet extends HttpServlet {
             }
                 
             
+        }else if(tempStep.equalsIgnoreCase("select_kategorien")){
+            Long userId = anwbean.findByName((String) request.getSession().getAttribute("anwendername"))
+                                                                                                         .getId();
+            
+            /*Hier muss vorher sämtliche Einträge des Users in der Kategorien-Tabelle gelöscht werden durch Aufruf einer Tabelle. */
+                       
+            String selectKategorien[] = request.getParameterValues("SELKategorien");
+            Long katId;
+            
+            if (selectKategorien.length >=1){
+                
+                for (String selectKategorien1 : selectKategorien) {
+                    katId = katBean.getKategorieByName(selectKategorien1).getId();
+                    /*Einfügen der selektierten Kategorien in ANWENDER_KATEGORIE durch Methode*/
+                }
+            }
         }
     }
 
