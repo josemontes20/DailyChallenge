@@ -53,7 +53,7 @@
         <div class="container">
             <div class="jumbotron">
                 <p> Ciaosen, Pimmel! </p>
-                <a class="btn btn-lg btn-primary" href="/DailyChallenge-war/mainpage.jsp">zur Startseite</a>
+                <a class="btn btn-lg btn-primary" href="/DailyChallenge-war/index.html">zur Startseite</a>
             </div>
         </div>
     </body>
