@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import model.Challenge;
 import model.Anwender;
 import Controller.KategorieBean;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -26,16 +27,21 @@ public class ChallengeBean {
     @PersistenceContext (name = "DailyDB")
     private EntityManager em;
     
-    private List<Challenge> findChallengesByDate(Date d){
-        // Vor dem Suchen muss geparst werden
-        String parsedDate = parseDateToString(d);
-        return findChallengesByDate(parsedDate);
+    private Challenge findChallenge(Date d, Kategorie k){
+        String parsedDate = parseDateToString(d); // Vor dem Suchen muss das Date-Objekt in ein String geparst werden
+        return findChallenge(parsedDate, k);
     }
     
-    private List<Challenge> findChallengesByDate(String parsedDate){
-        TypedQuery<Challenge> challenges = em.createNamedQuery("Challenge.findChallengesByDate", Challenge.class)
-                .setParameter("aktivAmDatum", parsedDate);
-        return challenges.getResultList();
+    private Challenge findChallenge(String parsedDate, Kategorie k){
+        TypedQuery<Challenge> challengesQuery = em.createNamedQuery("Challenge.findChallengeByDateAndKategorie", Challenge.class)
+                .setParameter("aktivAmDatum", parsedDate)
+                .setParameter("kategorie_id", k.getId());
+        
+        List<Challenge> challenges = challengesQuery.getResultList();
+        if (challenges != null && !challenges.isEmpty() && challenges.get(0) != null) {
+            return challengesQuery.getResultList().get(0);
+        }
+        return null;
     }
     
     public List<Challenge> findUnusedChallenges(Kategorie k){
@@ -43,29 +49,34 @@ public class ChallengeBean {
                 .setParameter("kategorie_id", k.getId());
         return challenges.getResultList();
     }
-    
-    /* Hole alle Challenges, die für heute angesetzt sind
-    Sind für heute noch keine geladen worden, setzt in jeder Kategorie zufällige Challenge als Tageschallenge */
+
+    // Suche Challenges für den heutigen Tag
+    // Wenn keine für Heute vorhanden sind, setze welche für Heute
     public List<Challenge> getChallengesForToday(List<Kategorie> kategorien){
-        Date today = Calendar.getInstance().getTime();
-        if(findChallengesByDate(today).isEmpty()){
-            //KategorieBean katBean = new KategorieBean();
-            // List<Kategorie> kategorien = katBean.getAllKategorien();
-            
-            for (Kategorie k : kategorien) {
-                List<Challenge> challenges = findUnusedChallenges(k);
+        List<Challenge> challenges = new ArrayList<>(); // Challenges, die der Anwender möchte
+        Date today = Calendar.getInstance().getTime();  // Datum von Heute zum Überprüfen in der DB
+
+        for (Kategorie kat : kategorien) {
+            Challenge c = findChallenge(today, kat);    // Suche die Challenge für Heute in allein meinen Kategorien
+            if (c == null) {                            // Wenn nicht vorhanden, weise ein zufälliges für Heute zus
+                List<Challenge> unusedChallenges = findUnusedChallenges(kat);
+                int randomNumber = (int)(Math.random() * unusedChallenges.size());
+                c = unusedChallenges.get(randomNumber);
                 
-                // Ziehe ein zufälliges Objekt aus der Challenge-Liste
-                int randomNumber = (int)(Math.random() * challenges.size());
-                Challenge c = challenges.get(randomNumber);
-            
-                // Bevor die Challenges geupdated werden können, muss das Datum in einen String geparst werden
-                TypedQuery<Challenge> update = em.createNamedQuery("Challenge.updateAsTodaysChallenge", Challenge.class)
-                        .setParameter("aktivAmDatum", parseDateToString(today));
-                update.executeUpdate();
+                // em.getTransaction().begin();
+                c.setAktivAmDatum(parseDateToString(today));
+                em.persist(c);
+                // em.getTransaction().commit();
+                
+//                // Bevor die Challenges geupdated werden können, muss das Datum in einen String geparst werden
+//                TypedQuery<Challenge> update = em.createNamedQuery("Challenge.updateAsTodaysChallenge", Challenge.class)
+//                        .setParameter("aktivAmDatum", parseDateToString(today));
+//                update.executeUpdate();
             }
+            challenges.add(c);
         }
-        return findChallengesByDate(today);
+        
+        return challenges;
     }
     
     private List<Challenge> getAllChallengesByUser(Long id){

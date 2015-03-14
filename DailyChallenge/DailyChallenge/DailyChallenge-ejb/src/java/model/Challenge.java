@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-/**
+/** 
  * @author Poloczek
  */
 
@@ -21,7 +21,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries(
 {
     @NamedQuery(name = "Challenge.findByAnwenderId", query = "SELECT c FROM Challenge c INNER JOIN c.kategorie k, k.anwender a WHERE a.id = :id AND k.id = c.kategorie.id"),
-    @NamedQuery(name = "Challenge.findChallengesByDate", query = "SELECT c FROM Challenge c WHERE c.aktivAmDatum = :aktivAmDatum"),
+    @NamedQuery(name = "Challenge.findChallengeByDateAndKategorie", query = "SELECT c FROM Challenge c WHERE c.aktivAmDatum = :aktivAmDatum AND c.kategorie.id = :kategorie_id"),
     @NamedQuery(name = "Challenge.findUnusedChallengesByKategorie", query = "SELECT c FROM Challenge c WHERE c.aktivAmDatum IS NULL AND c.kategorie.id = :kategorie_id"),
     @NamedQuery(name = "Challenge.updateAsTodaysChallenge", query = "UPDATE Challenge c SET c.aktivAmDatum = :aktivAmDatum")
 })
