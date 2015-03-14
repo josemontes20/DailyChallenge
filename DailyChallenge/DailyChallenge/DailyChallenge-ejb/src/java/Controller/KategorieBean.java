@@ -9,6 +9,7 @@ import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -34,7 +35,7 @@ public class KategorieBean {
     }
     
     public List<Kategorie> getAllKategorien(){
-        TypedQuery<Kategorie> kategorien = em.createNamedQuery("Kategorie.getAllKategorie", Kategorie.class);        
+        TypedQuery<Kategorie> kategorien = em.createNamedQuery("Kategorie.getAllKategorie", Kategorie.class);
         return kategorien.getResultList();
     }
     
@@ -51,6 +52,19 @@ public class KategorieBean {
     public Kategorie getKategorieByName (String name){
         TypedQuery<Kategorie> kategorie = em.createNamedQuery("Kategorie.getKategorieByName", Kategorie.class).setParameter("name", name);
         return kategorie.getSingleResult();
+    }
+    
+    public boolean deleteKategorienByUser (Long userId){
+        //Abfrage, welche Kategorien vom User abonniert waren
+        Query queryOld = em.createNamedQuery("Kategorie.getAllKategorieByUser", Kategorie.class).setParameter("id", userId);
+        int userKat = queryOld.getMaxResults();
+        
+        //Löschen durchführen
+        Query q = em.createNamedQuery("Kategorie.deleteKategorienByUSer", Kategorie.class).setParameter("id", userId);
+        int delStat = q.executeUpdate();
+        
+        return delStat == userKat;
+        
     }
 
 }

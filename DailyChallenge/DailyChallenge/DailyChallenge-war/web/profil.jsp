@@ -64,20 +64,21 @@
                 <h2>Kategorien</h2>
                 <ol>
                     <%                       
-                         List<Kategorie> kategorien = (List)request.getSession().getAttribute("kategorien");
+                        List<Kategorie> kategorien = (List)request.getSession().getAttribute("kategorien");
                          
                         if (kategorien != null && !kategorien.isEmpty()){
 
-                           for (Kategorie kat : kategorien) { 
-                               %> <li> <input type="checkbox" name="SELKategorien" value="<%= kat.getName()%>" </li> <%
-                            }
+                           for (Kategorie kat : kategorien) {
+                           
+                               %> <li><input type="checkbox" name="SELKategorien"</li> <%= kat.getName()%> <%
+                           }
                            %>      
                                    <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
                                          <p><input class="btn btn-lg btn-primary" type="submit" value="Speichern" style="margin-left: 17%;"/></p>
                                    </form>
                     <%
                        }else{
-                            %> <h4> Keine Kategorien vorhanden! </h4> <%
+                            %> <h4> Keine Kategorien vorhanden! </h4><%
                        }
                     %>
                 </ol>

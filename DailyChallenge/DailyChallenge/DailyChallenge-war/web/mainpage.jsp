@@ -1,3 +1,4 @@
+<%@page import="model.Kategorie"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Challenge"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

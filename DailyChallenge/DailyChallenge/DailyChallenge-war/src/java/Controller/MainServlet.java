@@ -46,10 +46,14 @@ public class MainServlet extends HttpServlet {
                 request.getSession().setMaxInactiveInterval(30*60);
                 request.getSession().setAttribute("anwendername", user.getUsername());
                 
+                //Hier werden die Challenges des Users übergeben
                 List<Challenge> challenges = chaBean.getChallengesForToday
                                             (katBean.getAllKategorienByUser(user.getId()));
-                
                 request.getSession().setAttribute("challenges", challenges);
+                
+                //Hier werden die Kategorien der Session übergeben
+                List<Kategorie> kategorien = katBean.getAllKategorien();
+                request.getSession().setAttribute("kategorien", kategorien);
                 
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                 
@@ -146,9 +150,6 @@ public class MainServlet extends HttpServlet {
                              
         }else if (tempStep.equalsIgnoreCase("profil")){
             
-            List<Kategorie> kategorien = katBean.getAllKategorien();
-            request.getSession().setAttribute("kategorien", kategorien);
-            
             response.sendRedirect("/DailyChallenge-war/profil.jsp");
             
             
@@ -167,17 +168,23 @@ public class MainServlet extends HttpServlet {
             Long userId = anwbean.findByName((String) request.getSession().getAttribute("anwendername"))
                                                                                                          .getId();
             
-            /*Hier muss vorher sämtliche Einträge des Users in der Kategorien-Tabelle gelöscht werden durch Aufruf einer Tabelle. */
-                       
-            String selectKategorien[] = request.getParameterValues("SELKategorien");
-            Long katId;
+            /*Hier werden sämtliche Einträge des Users in der Kategorien-Tabelle gelöscht*/
+            if(katBean.deleteKategorienByUser(userId)){
             
-            if (selectKategorien.length >=1){
-                
-                for (String selectKategorien1 : selectKategorien) {
-                    katId = katBean.getKategorieByName(selectKategorien1).getId();
-                    /*Einfügen der selektierten Kategorien in ANWENDER_KATEGORIE durch Methode*/
-                }
+                    String selectKategorien[] = request.getParameterValues("SELKategorien");
+                    Long katId;
+
+                    if (selectKategorien.length >=1){
+
+                        for (String selectKategorien1 : selectKategorien) {
+                            katId = katBean.getKategorieByName(selectKategorien1).getId();
+                            /*Einfügen der selektierten Kategorien in ANWENDER_KATEGORIE durch Methode*/
+                        }
+                    }
+                    response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
+                    
+            }else{
+                response.sendRedirect("/DailyChallenge-war/selKategorien_error.jsp");
             }
         }
     }
