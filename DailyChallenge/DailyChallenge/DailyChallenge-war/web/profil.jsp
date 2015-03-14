@@ -57,9 +57,7 @@
                 <h1>Profileinstellungen!</h1>        
                 <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/mainservlet?step=loeschen_profil">Profil löschen</a>
             </div>
-        </div>
-        
-        <div class="container">
+
             <div class="jumbotron">
                 <h2>Kategorien</h2>
                 <ol>

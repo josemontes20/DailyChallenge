@@ -42,7 +42,7 @@
                 </div>
                 <div>
                     <ul class="nav navbar-nav">
-                        <li><a href="/DailyChallenge-war/profil.jsp" style="font-size: 18px; font-weight: bold; color: #3e84c0">Profil</a></li> 
+                        <li><a href="/DailyChallenge-war/profil.jsp" style="font-size: 18px; font-weight: bold; color: #3e84c0">Profileinstellungen</a></li> 
                     </ul>
                     
                     <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
