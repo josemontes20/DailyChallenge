@@ -46,7 +46,9 @@ public class MainServlet extends HttpServlet {
                 request.getSession().setMaxInactiveInterval(30*60);
                 request.getSession().setAttribute("anwendername", user.getUsername());
                 
-                List<Challenge> challenges = challenges = chaBean.getAllChallengesByUser(user);
+                List<Challenge> challenges = chaBean.getChallengesForToday
+                                            (katBean.getAllKategorienByUser(user.getId()));
+                
                 request.getSession().setAttribute("challenges", challenges);
                 
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
@@ -77,7 +79,10 @@ public class MainServlet extends HttpServlet {
                         request.getSession().setMaxInactiveInterval(30*60);
                         request.getSession().setAttribute("anwendername", user.getUsername());
                         
-                        List<Challenge> challenges = challenges = chaBean.getAllChallengesByUser(user);
+                        List<Challenge> challenges = chaBean.getChallengesForToday
+                                                    (katBean.getAllKategorienByUser(user.getId()));
+                        
+              
                         request.getSession().setAttribute("challenges", challenges);
                     
                         response.sendRedirect("/DailyChallenge-war/mainpage.jsp");

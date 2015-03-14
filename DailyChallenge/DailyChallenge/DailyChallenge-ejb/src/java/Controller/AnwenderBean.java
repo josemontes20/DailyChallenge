@@ -71,7 +71,7 @@ public class AnwenderBean{
         }
         
         if ((!username.isEmpty())){
-               TypedQuery<Anwender> abfrageUser = em.createNamedQuery("Anwender.findByUser", Anwender.class)
+               TypedQuery<Anwender> abfrageUser = em.createNamedQuery("Anwender.findByName", Anwender.class)
                                               .setParameter("username", username);
                
                if (!(abfrageUser.getResultList().isEmpty())){
