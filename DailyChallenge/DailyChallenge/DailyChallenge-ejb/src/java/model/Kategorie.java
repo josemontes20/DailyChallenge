@@ -20,7 +20,7 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "Kategorie.getAllKategorie", query = "SELECT k FROM Kategorie k"),
     @NamedQuery(name = "Kategorie.getAllKategorieByUser", query = "SELECT k FROM Kategorie k INNER JOIN k.anwender a WHERE a.id = :id"),
     @NamedQuery(name = "Kategorie.getKategorieByName", query = "SELECT k.id FROM Kategorie k WHERE k.name = :name")/*,
-    @NamedQuery(name = "Kategorie.deleteKategorieByUser", query = "DELETE ")*/
+    @NamedQuery(name = "Kategorie.deleteKategorienByUser", query = "DELETE ")*/
 })
 public class Kategorie implements Serializable {
     

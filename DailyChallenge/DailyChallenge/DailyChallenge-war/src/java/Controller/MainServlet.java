@@ -173,7 +173,17 @@ public class MainServlet extends HttpServlet {
             
                     String selectKategorien[] = request.getParameterValues("SELKategorien");
                     Long katId;
-
+                    
+                    //TEST
+                    if(selectKategorien[0].equals("Sport")){
+                        if(selectKategorien[0].equals("Wissen")){
+                            if(selectKategorien[0].equals("Ernährung")){
+                                response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
+                            }
+                        }
+                    }
+                                
+                    
                     if (selectKategorien.length >=1){
 
                         for (String selectKategorien1 : selectKategorien) {

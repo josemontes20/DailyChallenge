@@ -58,9 +58,10 @@ public class KategorieBean {
         //Abfrage, welche Kategorien vom User abonniert waren
         Query queryOld = em.createNamedQuery("Kategorie.getAllKategorieByUser", Kategorie.class).setParameter("id", userId);
         int userKat = queryOld.getMaxResults();
+                
         
         //Löschen durchführen
-        Query q = em.createNamedQuery("Kategorie.deleteKategorienByUSer", Kategorie.class).setParameter("id", userId);
+        Query q = em.createNamedQuery("Kategorie.deleteKategorienByUser", Kategorie.class).setParameter("id", userId);
         int delStat = q.executeUpdate();
         
         return delStat == userKat;
