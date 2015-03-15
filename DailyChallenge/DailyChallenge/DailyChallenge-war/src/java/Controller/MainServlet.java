@@ -170,12 +170,12 @@ public class MainServlet extends HttpServlet {
             
             /*Hier werden sämtliche Einträge des Users in der Kategorien-Tabelle gelöscht*/
             //if(katBean.deleteKategorienByUser(userId)){
-            
+                    
                     String selectKategorien[] = request.getParameterValues("SELKategorien");
 
                     Long katId;
                     Kategorie tempKat;
-                    if (selectKategorien.length > 0){
+                    if (selectKategorien.length > 0 && selectKategorien != null){
 
                         for (String selectKat : selectKategorien) {
                             tempKat = katBean.getKategorieByName(selectKat);
@@ -185,7 +185,7 @@ public class MainServlet extends HttpServlet {
                     }
 
                     //TEST--> Funktioniert
-                    if(selectKategorien.length > 0 && selectKategorien[0].equals("Sport") && selectKategorien[1].equals("Wissen") && selectKategorien[2].equals("Charme")){
+                    if(selectKategorien.length > 0 && selectKategorien != null && selectKategorien[0].equals("Sport") && selectKategorien[1].equals("Wissen") && selectKategorien[2].equals("Charme")){
                         response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                     }else{
                         response.sendRedirect("/DailyChallenge-war/selKategorien_error.jsp");
