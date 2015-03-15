@@ -165,37 +165,37 @@ public class MainServlet extends HttpServlet {
                 
             
         }else if(tempStep.equalsIgnoreCase("select_kategorien")){
-            Long userId = anwbean.findByName((String) request.getSession().getAttribute("anwendername"))
-                                                                                                         .getId();
+            //ID des Users auslesen
+            Long userId = anwbean.findByName((String) request.getSession().getAttribute("anwendername")).getId();
             
             /*Hier werden sämtliche Einträge des Users in der Kategorien-Tabelle gelöscht*/
-            if(katBean.deleteKategorienByUser(userId)){
+            //if(katBean.deleteKategorienByUser(userId)){
             
                     String selectKategorien[] = request.getParameterValues("SELKategorien");
-                    Long katId;
-                    
-                    //TEST
-                    if(selectKategorien[0].equals("Sport")){
-                        if(selectKategorien[0].equals("Wissen")){
-                            if(selectKategorien[0].equals("Ernährung")){
-                                response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
-                            }
-                        }
-                    }
-                                
-                    
-                    if (selectKategorien.length >=1){
 
-                        for (String selectKategorien1 : selectKategorien) {
-                            katId = katBean.getKategorieByName(selectKategorien1).getId();
+                    Long katId;
+                    Kategorie tempKat;
+                    if (selectKategorien.length > 0){
+
+                        for (String selectKat : selectKategorien) {
+                            tempKat = katBean.getKategorieByName(selectKat);
+                            katId = tempKat.getId();
                             /*Einfügen der selektierten Kategorien in ANWENDER_KATEGORIE durch Methode*/
                         }
                     }
-                    response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
+
+                    //TEST--> Funktioniert
+                    if(selectKategorien.length > 0 && selectKategorien[0].equals("Sport") && selectKategorien[1].equals("Wissen") && selectKategorien[2].equals("Charme")){
+                        response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
+                    }else{
+                        response.sendRedirect("/DailyChallenge-war/selKategorien_error.jsp");
+                    }
+                                
                     
-            }else{
+                    
+            /*}else{
                 response.sendRedirect("/DailyChallenge-war/selKategorien_error.jsp");
-            }
+            }*/
         }
     }
 

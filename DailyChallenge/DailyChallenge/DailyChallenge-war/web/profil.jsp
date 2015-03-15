@@ -66,14 +66,15 @@
                          
                         if (kategorien != null && !kategorien.isEmpty()){
 
-                           for (Kategorie kat : kategorien) {
-                           
-                               %> <li><input type="checkbox" name="SELKategorien"</li> <%= kat.getName()%> <%
+                           for (Kategorie kat : kategorien) {%>
+                           <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
+                               
+                               <li><input type="checkbox" name="SELKategorien" value="<%= kat.getName() %>"</li> <%= kat.getName()%> <%
                            }
                            %>      
-                                   <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
-                                         <p><input class="btn btn-lg btn-primary" type="submit" value="Speichern" style="margin-left: 17%;"/></p>
-                                   </form>
+                                   
+                               <p><input class="btn btn-lg btn-primary" type="submit" value="Speichern" style="margin-left: 17%;"/></p>
+                           </form>
                     <%
                        }else{
                             %> <h4> Keine Kategorien vorhanden! </h4><%

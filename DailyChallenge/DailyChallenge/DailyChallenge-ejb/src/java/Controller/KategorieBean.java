@@ -50,8 +50,8 @@ public class KategorieBean {
     }
     
     public Kategorie getKategorieByName (String name){
-        TypedQuery<Kategorie> kategorie = em.createNamedQuery("Kategorie.getKategorieByName", Kategorie.class).setParameter("name", name);
-        return kategorie.getSingleResult();
+        Query kategorie = em.createNamedQuery("Kategorie.getKategorieByName", Kategorie.class).setParameter("name", name);
+        return (Kategorie)kategorie.getSingleResult();
     }
     
     public boolean deleteKategorienByUser (Long userId){
