@@ -58,14 +58,13 @@
                 <h1>Servus, <%= user%>!</h1>
                 <h2>Deine heutigen Challenges!</h2>
             </div>
-           <!-- <ol style="padding-left: 0px;"> -->
                 <%
                     List<Challenge> challenges = (List) request.getSession().getAttribute("challenges");
 
                     if (!challenges.isEmpty()) {
                         for (Challenge cha : challenges) {
-                %>  <div class="jumbotron">
-                    <li> <%= cha.getBeschreibung()%> </li>   
+                %>  <div class="jumbotron"  style="margin-bottom: 10px;">
+                    <p> <%= cha.getBeschreibung()%> </p>   
                 </div>
                 <%
                     }

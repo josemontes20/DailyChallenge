@@ -46,9 +46,12 @@ public class MainServlet extends HttpServlet {
                 request.getSession().setMaxInactiveInterval(30*60);
                 request.getSession().setAttribute("anwendername", user.getUsername());
                 
-                //Hier werden die Challenges des Users übergeben
-                List<Challenge> challenges = chaBean.getChallengesForToday
-                                            (katBean.getAllKategorienByUser(user.getId()));
+//                //Hier werden die Challenges des Users übergeben
+//                List<Challenge> challenges = chaBean.getChallengesForToday
+//                                            (katBean.getAllKategorienByUser(user.getId()));
+//                request.getSession().setAttribute("challenges", challenges);
+                
+                List<Challenge> challenges = chaBean.getAllChallengesByUser(user);
                 request.getSession().setAttribute("challenges", challenges);
                 
                 //Hier werden die Kategorien der Session übergeben
