@@ -1,3 +1,4 @@
+<%@page import="model.Anwender"%>
 <%@page import="model.Kategorie"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,9 +24,9 @@
             response.addDateHeader("Expires", 0);
             response.addHeader("Pragma", "no-cache");
 
-            String user = (String) request.getSession().getAttribute("anwendername");       
+            Anwender a = (Anwender) request.getSession().getAttribute("anwender");       
             
-            if (user.equals("null")) {
+            if (a.getUsername().equals("null")) {
                 response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
 
@@ -45,7 +46,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
-                        <li style="font-size: 18px; font-weight: bold; margin-top: 12px; color: #646464">Nicht <%= user%>?</li>
+                        <li style="font-size: 18px; font-weight: bold; margin-top: 12px; color: #646464">Nicht <%= a.getUsername()%>?</li>
                         <li><a href="/DailyChallenge-war/mainservlet?step=abmelden" style="font-size: 18px; font-weight: bold; color: #3e84c0">Abmelden!</a></li>
                     </ul>
                 </div>
@@ -58,30 +59,35 @@
                 <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/mainservlet?step=loeschen_profil">Profil löschen</a>
             </div>
 
-            <div class="jumbotron">
-                <h2>Kategorien</h2>
-                <ol>
+            <h2>Kategorien</h2>
                     <%                       
                         List<Kategorie> kategorien = (List)request.getSession().getAttribute("kategorien");
-                         
                         if (kategorien != null && !kategorien.isEmpty()){
-
-                           for (Kategorie kat : kategorien) {%>
-                           <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
+                            
+                            for (Kategorie kat : kategorien) {
+                                
+                                %> <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien"> <%
+                                
+                               boolean containsKategorie = false;
+                               for(Kategorie katUser : a.getAnwender_kategorien()){
+                                   if(katUser.getName().equals(kat.getName())){
+                                       containsKategorie = true;
+                                   }
+                               }
                                
-                               <li><input type="checkbox" name="SELKategorien" value="<%= kat.getName() %>"</li> <%= kat.getName()%> <%
+                               if (containsKategorie){ %>
+                                    <li><input type="checkbox" checked="true"  name="SELKategorien" value="<%=kat.getName()%>" </li> <%= kat.getName() %>
+                               <% } else { %>
+                                    <li><input type="checkbox" name="SELKategorien" value="<%= kat.getName()%>"</li> <%= kat.getName()%> <%
+                               }                               
                            }
                            %>      
-                                   
                                <p><input class="btn btn-lg btn-primary" type="submit" value="Speichern" style="margin-left: 17%;"/></p>
-                           </form>
+                               </form>
                     <%
                        }else{
                             %> <h4> Keine Kategorien vorhanden! </h4><%
                        }
                     %>
-                </ol>
-            </div>
         </div>
-    </body>
 </html>
