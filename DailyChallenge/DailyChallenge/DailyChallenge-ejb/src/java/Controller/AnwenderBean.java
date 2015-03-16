@@ -112,9 +112,9 @@ public class AnwenderBean{
     }
     
     //Anwender über Username finde
-    public Anwender findByName(String username){
-        TypedQuery<Anwender> user = em.createNamedQuery("Anwender.findByName", Anwender.class).setParameter("username", username);
-        return user.getSingleResult();
+    public Anwender findByName(Anwender a){
+        TypedQuery<Anwender> user = em.createNamedQuery("Anwender.findByName", Anwender.class).setParameter("username", a.getUsername());
+        return user.getResultList().get(0);
     }
     
     public void updateKategories(Anwender anwender, List<Kategorie> kategorien){

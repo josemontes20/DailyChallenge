@@ -40,15 +40,15 @@ public class MainServlet extends HttpServlet {
         String tempStep = request.getParameter("step");
         
         if(tempStep.equalsIgnoreCase("anmelden")){
-             Anwender user = anwbean.loginUser(request.getParameter("username"),
+             Anwender anwender = anwbean.loginUser(request.getParameter("username"),
                                        request.getParameter("userpassword"));
             
-            if (user != null){
+            if (anwender != null){
                 request.getSession().setMaxInactiveInterval(30*60);
-                request.getSession().setAttribute("anwendername", user.getUsername());
+                request.getSession().setAttribute("anwender", anwender);
                 
               //Hier werden die Challenges des Users übergeben
-              List<Challenge> challenges = chaBean.getChallengesForToday(katBean.getAllKategorienByUser(user.getId()));
+              List<Challenge> challenges = chaBean.getChallengesForToday(katBean.getAllKategorienByUser(anwender.getId()));
               request.getSession().setAttribute("challenges", challenges);
                 
             // List<Challenge> challenges = chaBean.getAllChallengesByUser(user);
@@ -168,7 +168,7 @@ public class MainServlet extends HttpServlet {
             
         }else if(tempStep.equalsIgnoreCase("select_kategorien")){
             
-            Anwender a = anwbean.findByName((String) request.getSession().getAttribute("anwendername"));
+            Anwender a = anwbean.findByName((Anwender) request.getSession().getAttribute("anwender"));
             String selectKategorien[] = request.getParameterValues("SELKategorien");
 
             List<Kategorie> neueKategorien = new ArrayList<>();

@@ -1,3 +1,4 @@
+<%@page import="model.Anwender"%>
 <%@page import="model.Kategorie"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Challenge"%>
@@ -24,9 +25,9 @@
             response.addDateHeader("Expires", 0);
             response.addHeader("Pragma", "no-cache");
 
-            String user = (String) session.getAttribute("anwendername");
+            Anwender a = (Anwender) session.getAttribute("anwender");
 
-            if (user.equals("null")) {
+            if (a.getUsername().equals("null")) {
                 response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
 
@@ -46,7 +47,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
-                        <li style="font-size: 18px; font-weight: bold; margin-top: 12px; color: #646464">Nicht <%= user%>?</li>
+                        <li style="font-size: 18px; font-weight: bold; margin-top: 12px; color: #646464">Nicht <%= a.getUsername()%>?</li>
                         <li><a href="/DailyChallenge-war/mainservlet?step=abmelden" style="font-size: 18px; font-weight: bold; color: #3e84c0">Abmelden!</a></li>
                     </ul>
                 </div>
@@ -55,7 +56,7 @@
         <!-- Inhalt -->
         <div class="container">
             <div class="jumbotron" style="margin-bottom: 20px;">
-                <h1>Servus, <%= user%>!</h1>
+                <h1>Servus, <%= a.getUsername()%>!</h1>
                 <h2>Deine heutigen Challenges!</h2>
             </div>
                 <%

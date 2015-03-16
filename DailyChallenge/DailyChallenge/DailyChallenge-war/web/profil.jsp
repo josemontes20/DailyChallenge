@@ -64,21 +64,20 @@
                         List<Kategorie> kategorien = (List)request.getSession().getAttribute("kategorien");
                         if (kategorien != null && !kategorien.isEmpty()){
                             
-                            for (Kategorie kat : kategorien) {
-                                
-                                %> <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien"> <%
-                                
+                            for (Kategorie kat : kategorien) {  
+                                                           
                                boolean containsKategorie = false;
                                for(Kategorie katUser : a.getAnwender_kategorien()){
                                    if(katUser.getName().equals(kat.getName())){
                                        containsKategorie = true;
                                    }
-                               }
-                               
-                               if (containsKategorie){ %>
-                                    <li><input type="checkbox" checked="true"  name="SELKategorien" value="<%=kat.getName()%>" </li> <%= kat.getName() %>
+                               }%>
+                               <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
+     
+                               <% if (containsKategorie){ %>
+                                    <li> <input type="checkbox" checked="true" name="SELKategorien" value="<%=kat.getName()%>" </li> <%= kat.getName() %>
                                <% } else { %>
-                                    <li><input type="checkbox" name="SELKategorien" value="<%= kat.getName()%>"</li> <%= kat.getName()%> <%
+                                    <li> <input type="checkbox" name="SELKategorien" value="<%= kat.getName()%>"</li> <%= kat.getName()%> <%
                                }                               
                            }
                            %>      
