@@ -44,7 +44,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/DailyChallenge-war/profil.jsp" style="font-size: 18px; font-weight: bold; color: #3e84c0">Profileinstellungen</a></li> 
                     </ul>
-                    
+
                     <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
                         <li style="font-size: 18px; font-weight: bold; margin-top: 12px; color: #646464">Nicht <%= user%>?</li>
                         <li><a href="/DailyChallenge-war/mainservlet?step=abmelden" style="font-size: 18px; font-weight: bold; color: #3e84c0">Abmelden!</a></li>
@@ -54,23 +54,27 @@
         </nav>
         <!-- Inhalt -->
         <div class="container">
-            <div class="jumbotron">
+            <div class="jumbotron" style="margin-bottom: 20px;">
                 <h1>Servus, <%= user%>!</h1>
                 <h2>Deine heutigen Challenges!</h2>
-                <ol>
-                    <%
-                        List<Challenge> challenges = (List)request.getSession().getAttribute("challenges");
-                        
-                        if(!challenges.isEmpty()){
-                            for (Challenge cha : challenges) { 
-                                %> <li> <%= cha.getBeschreibung() %> </li> <%
-                            }
-                        }else {
-                            %> <h4> Noch keine Challenges? Dann schnell in deinem Profil Kategorien wählen!</h4> <%
-                        }
-                    %>            
-                </ol>
             </div>
+           <!-- <ol style="padding-left: 0px;"> -->
+                <%
+                    List<Challenge> challenges = (List) request.getSession().getAttribute("challenges");
+
+                    if (!challenges.isEmpty()) {
+                        for (Challenge cha : challenges) {
+                %>  <div class="jumbotron">
+                    <li> <%= cha.getBeschreibung()%> </li>   
+                </div>
+                <%
+                    }
+                } else {
+                %>  <div class="jumbotron">
+                    <p> Noch keine Challenges? Dann schnell in deinem <a href="profil.jsp">Profil</a> Kategorien wählen!</p> 
+                </div><%
+                    }
+                %>            
         </div>
     </body>
 </html>
