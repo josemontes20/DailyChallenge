@@ -10,6 +10,7 @@ import model.Kategorie;
 import model.Challenge;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -46,13 +47,12 @@ public class MainServlet extends HttpServlet {
                 request.getSession().setMaxInactiveInterval(30*60);
                 request.getSession().setAttribute("anwendername", user.getUsername());
                 
-//                //Hier werden die Challenges des Users übergeben
-//                List<Challenge> challenges = chaBean.getChallengesForToday
-//                                            (katBean.getAllKategorienByUser(user.getId()));
-//                request.getSession().setAttribute("challenges", challenges);
+              //Hier werden die Challenges des Users übergeben
+              List<Challenge> challenges = chaBean.getChallengesForToday(katBean.getAllKategorienByUser(user.getId()));
+              request.getSession().setAttribute("challenges", challenges);
                 
-                List<Challenge> challenges = chaBean.getAllChallengesByUser(user);
-                request.getSession().setAttribute("challenges", challenges);
+            // List<Challenge> challenges = chaBean.getAllChallengesByUser(user);
+            // request.getSession().setAttribute("challenges", challenges);
                 
                 //Hier werden die Kategorien der Session übergeben
                 List<Kategorie> kategorien = katBean.getAllKategorien();
@@ -165,40 +165,28 @@ public class MainServlet extends HttpServlet {
             }else{
                 response.sendRedirect("/DailyChallenge-war/userdel_error.jsp");
             }
-                
             
         }else if(tempStep.equalsIgnoreCase("select_kategorien")){
-            //ID des Users auslesen
-            Long userId = anwbean.findByName((String) request.getSession().getAttribute("anwendername")).getId();
             
-            /*Hier werden sämtliche Einträge des Users in der Kategorien-Tabelle gelöscht*/
-            //if(katBean.deleteKategorienByUser(userId)){
-                    
-                    String selectKategorien[] = request.getParameterValues("SELKategorien");
+            Anwender a = anwbean.findByName((String) request.getSession().getAttribute("anwendername"));
+            String selectKategorien[] = request.getParameterValues("SELKategorien");
 
-                    Long katId;
-                    Kategorie tempKat;
-                    if (selectKategorien.length > 0 && selectKategorien != null){
-
+            List<Kategorie> neueKategorien = new ArrayList<>();
+            if ((selectKategorien != null && selectKategorien.length > 0) || selectKategorien == null){
+                if (selectKategorien != null){
                         for (String selectKat : selectKategorien) {
-                            tempKat = katBean.getKategorieByName(selectKat);
-                            katId = tempKat.getId();
-                            /*Einfügen der selektierten Kategorien in ANWENDER_KATEGORIE durch Methode*/
+                            neueKategorien.add(katBean.getKategorieByName(selectKat));
                         }
-                    }
-
-                    //TEST--> Funktioniert
-                    if(selectKategorien.length > 0 && selectKategorien != null && selectKategorien[0].equals("Sport") && selectKategorien[1].equals("Wissen") && selectKategorien[2].equals("Charme")){
-                        response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
-                    }else{
-                        response.sendRedirect("/DailyChallenge-war/selKategorien_error.jsp");
-                    }
-                                
-                    
-                    
-            /*}else{
+                }
+                anwbean.updateKategories(a, neueKategorien);
+                
+                //Hier werden die Challenges des Users übergeben
+                List<Challenge> challenges = chaBean.getChallengesForToday(katBean.getAllKategorienByUser(a.getId()));
+                request.getSession().setAttribute("challenges", challenges);
+                response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
+            } else {
                 response.sendRedirect("/DailyChallenge-war/selKategorien_error.jsp");
-            }*/
+            }
         }
     }
 

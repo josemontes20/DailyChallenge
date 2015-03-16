@@ -1,6 +1,6 @@
 package Controller;
 
-import model.Anwender;
+import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -8,6 +8,8 @@ import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import model.Kategorie;
+import model.Anwender;
 
 /**
  * @author José Montes
@@ -106,7 +108,6 @@ public class AnwenderBean{
     //Anwender wird aus der ANWENDER-Tabelle geloescht
     public int deleteUser(String username){
         Query q = em.createNamedQuery("Anwender.deleteUser", Anwender.class).setParameter("username", username);
-        
         return q.executeUpdate();
     }
     
@@ -116,4 +117,17 @@ public class AnwenderBean{
         return user.getSingleResult();
     }
     
+    public void updateKategories(Anwender anwender, List<Kategorie> kategorien){
+        anwender.getAnwender_kategorien().clear();
+        em.setFlushMode(FlushModeType.AUTO);
+        
+        for (Kategorie k : kategorien) {
+            k.getAnwender().add(anwender);
+            anwender.getAnwender_kategorien().add(k);
+            // em.persist(k);
+            em.merge(k);
+        }
+        em.merge(anwender);
+        em.flush();
+    }
 }

@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import model.Challenge;
 import model.Anwender;
-import Controller.KategorieBean;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -63,15 +62,9 @@ public class ChallengeBean {
                 int randomNumber = (int)(Math.random() * unusedChallenges.size());
                 c = unusedChallenges.get(randomNumber);
                 
-                // em.getTransaction().begin();
                 c.setAktivAmDatum(parseDateToString(today));
                 em.persist(c);
-                // em.getTransaction().commit();
-                
-//                // Bevor die Challenges geupdated werden können, muss das Datum in einen String geparst werden
-//                TypedQuery<Challenge> update = em.createNamedQuery("Challenge.updateAsTodaysChallenge", Challenge.class)
-//                        .setParameter("aktivAmDatum", parseDateToString(today));
-//                update.executeUpdate();
+                em.flush();
             }
             challenges.add(c);
         }
