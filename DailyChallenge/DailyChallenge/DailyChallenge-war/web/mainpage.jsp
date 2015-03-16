@@ -59,11 +59,13 @@
                 <h2>Deine heutigen Challenges!</h2>
             </div>
                 <%
+                    // Hier wird die Challenge-Liste des Users übergeben   
                     List<Challenge> challenges = (List) request.getSession().getAttribute("challenges");
-
+                    
                     if (!challenges.isEmpty()) {
                         for (Challenge cha : challenges) {
                 %>  <div class="jumbotron"  style="margin-bottom: 10px;">
+                    <p> <%= (String) cha.getKategorie().getName()%> </p>
                     <p> <%= cha.getBeschreibung()%> </p>   
                 </div>
                 <%
