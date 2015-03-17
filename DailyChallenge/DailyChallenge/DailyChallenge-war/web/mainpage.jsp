@@ -49,7 +49,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
-                        <li style="font-size: 18px; font-weight: bold; margin-top: 12px; color: #646464">Nicht <%= a.getUsername()%>?</li>
+                        <li style="font-size: 18px; font-weight: bold; margin-top: 14px; color: #646464">Nicht <%= a.getUsername()%>?</li>
                         <li><a href="/DailyChallenge-war/mainservlet?step=abmelden" style="font-size: 18px; font-weight: bold; color: #3e84c0">Abmelden!</a></li>
                     </ul>
                 </div>
