@@ -155,8 +155,7 @@ public class MainServlet extends HttpServlet {
             }*/
                              
         }else if (tempStep.equalsIgnoreCase("profil")){
-            
-            
+                        
             response.sendRedirect("/DailyChallenge-war/profil.jsp");
             
             
@@ -188,6 +187,7 @@ public class MainServlet extends HttpServlet {
                 List<Challenge> challenges = chaBean.getChallengesForToday(katBean.getAllKategorienByUser(a.getId()));
                 request.getSession().setAttribute("challenges", challenges);
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
+            
             } else {
                 response.sendRedirect("/DailyChallenge-war/selKategorien_error.jsp");
             }

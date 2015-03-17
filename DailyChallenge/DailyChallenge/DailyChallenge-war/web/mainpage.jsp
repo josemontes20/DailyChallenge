@@ -32,10 +32,6 @@
             if (abmelden.equals("true")) {
                response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
-            
-           
-
-            
 
         %>
 
