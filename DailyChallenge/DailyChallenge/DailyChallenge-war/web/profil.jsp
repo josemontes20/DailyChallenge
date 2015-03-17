@@ -61,6 +61,7 @@
             </div>
             <div class="jumbotron">
                 <h2>Kategorien</h2>
+                <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
                 <%
                     List<Kategorie> kategorien = (List) request.getSession().getAttribute("kategorien");
                     
@@ -76,7 +77,7 @@
                                 }
                             }   
                 %>
-                <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
+                
 
                     <% if (containsKategorie) {%>
                     <p> <input type="checkbox" checked="true" name="SELKategorien" value="<%=kat.getName()%>" </p> <%= kat.getName()%>

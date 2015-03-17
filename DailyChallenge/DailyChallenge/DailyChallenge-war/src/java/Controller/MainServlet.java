@@ -171,7 +171,7 @@ public class MainServlet extends HttpServlet {
             
         }else if(tempStep.equalsIgnoreCase("select_kategorien")){
             
-            Anwender a = anwbean.findByName((Anwender) request.getSession().getAttribute("anwender"));
+            Anwender a = (Anwender) request.getSession().getAttribute("anwender");
             String selectKategorien[] = request.getParameterValues("SELKategorien");
 
             List<Kategorie> neueKategorien = new ArrayList<>();
@@ -186,8 +186,12 @@ public class MainServlet extends HttpServlet {
                 //Hier werden die Challenges des Users übergeben
                 List<Challenge> challenges = chaBean.getChallengesForToday(katBean.getAllKategorienByUser(a.getId()));
                 request.getSession().setAttribute("challenges", challenges);
+                
+                request.getSession().setAttribute("anwender", a);
+                
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
             
+                
             } else {
                 response.sendRedirect("/DailyChallenge-war/selKategorien_error.jsp");
             }
