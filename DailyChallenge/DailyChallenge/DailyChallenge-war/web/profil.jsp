@@ -86,7 +86,7 @@
                 </form>
                 <%
                 } else {
-                %> <h4> Keine Kategorien vorhanden! </h4><%
+                %> <p> Keine Kategorien vorhanden! <p><%
                     }
                 %>
             </div>
