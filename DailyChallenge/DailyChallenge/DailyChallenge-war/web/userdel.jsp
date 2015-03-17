@@ -52,7 +52,7 @@
         <!-- Inhalt -->
         <div class="container">
             <div class="jumbotron">
-                <p> Ciaosen, Pimmel! </p>
+                <p>Schade, dass du uns verlässt.</p>
                 <a class="btn btn-lg btn-primary" href="/DailyChallenge-war/index.html">zur Startseite</a>
             </div>
         </div>

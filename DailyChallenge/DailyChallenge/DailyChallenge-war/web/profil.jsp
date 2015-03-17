@@ -24,8 +24,8 @@
             response.addDateHeader("Expires", 0);
             response.addHeader("Pragma", "no-cache");
 
-            Anwender a = (Anwender) request.getSession().getAttribute("anwender");       
-            
+            Anwender a = (Anwender) request.getSession().getAttribute("anwender");
+
             if (a.getUsername().equals("null")) {
                 response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
@@ -56,37 +56,40 @@
         <div class="container">
             <div class="jumbotron">
                 <h1>Profileinstellungen!</h1>        
-                <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/mainservlet?step=loeschen_profil">Profil löschen</a>
             </div>
+            <div class="jumbotron">
+                <h2>Kategorien</h2>
+                <%
+                    List<Kategorie> kategorien = (List) request.getSession().getAttribute("kategorien");
+                    if (kategorien != null && !kategorien.isEmpty()) {
 
-            <h2>Kategorien</h2>
-                    <%                       
-                        List<Kategorie> kategorien = (List)request.getSession().getAttribute("kategorien");
-                        if (kategorien != null && !kategorien.isEmpty()){
-                            
-                            for (Kategorie kat : kategorien) {  
-                                                           
-                               boolean containsKategorie = false;
-                               for(Kategorie katUser : a.getAnwender_kategorien()){
-                                   if(katUser.getName().equals(kat.getName())){
-                                       containsKategorie = true;
-                                   }
-                               }%>
-                               <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
-     
-                               <% if (containsKategorie){ %>
-                                    <li> <input type="checkbox" checked="true" name="SELKategorien" value="<%=kat.getName()%>" </li> <%= kat.getName() %>
-                               <% } else { %>
-                                    <li> <input type="checkbox" name="SELKategorien" value="<%= kat.getName()%>"</li> <%= kat.getName()%> <%
-                               }                               
-                           }
-                           %>      
-                               <p><input class="btn btn-lg btn-primary" type="submit" value="Speichern" style="margin-left: 17%;"/></p>
-                               </form>
-                    <%
-                       }else{
-                            %> <h4> Keine Kategorien vorhanden! </h4><%
-                       }
-                    %>
+                        for (Kategorie kat : kategorien) {
+
+                            boolean containsKategorie = false;
+                            for (Kategorie katUser : a.getAnwender_kategorien()) {
+                                if (katUser.getName().equals(kat.getName())) {
+                                    containsKategorie = true;
+                                }
+                            }%>
+                <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
+
+                    <% if (containsKategorie) {%>
+                    <p> <input type="checkbox" checked="true" name="SELKategorien" value="<%=kat.getName()%>" </p> <%= kat.getName()%>
+                        <% } else {%>
+                    <p> <input type="checkbox" name="SELKategorien" value="<%= kat.getName()%>"</p> <%= kat.getName()%> <%
+                            }
+                        }
+                        %>      
+                    <p><input class="btn btn-lg btn-primary" type="submit" value="Speichern"/></p>
+                </form>
+                <%
+                } else {
+                %> <h4> Keine Kategorien vorhanden! </h4><%
+                    }
+                %>
+            </div>
+            <div class="jumbotron">      
+                <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/mainservlet?step=loeschen_profil">Profil endgültig löschen</a>
+            </div>
         </div>
 </html>
