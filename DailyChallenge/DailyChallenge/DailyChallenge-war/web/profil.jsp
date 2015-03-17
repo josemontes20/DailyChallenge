@@ -26,7 +26,7 @@
 
             Anwender a = (Anwender) request.getSession().getAttribute("anwender");
 
-            String abmelden = (String) session.getAttribute("abmelden");
+            String abmelden = (String) request.getSession().getAttribute("abmelden");
             
             if (abmelden.equals("true")) {
                response.sendRedirect("/DailyChallenge-war/login.jsp");
@@ -63,16 +63,19 @@
                 <h2>Kategorien</h2>
                 <%
                     List<Kategorie> kategorien = (List) request.getSession().getAttribute("kategorien");
+                    
                     if (kategorien != null && !kategorien.isEmpty()) {
 
                         for (Kategorie kat : kategorien) {
 
                             boolean containsKategorie = false;
+                            
                             for (Kategorie katUser : a.getAnwender_kategorien()) {
                                 if (katUser.getName().equals(kat.getName())) {
                                     containsKategorie = true;
                                 }
-                            }%>
+                            }   
+                %>
                 <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
 
                     <% if (containsKategorie) {%>

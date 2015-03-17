@@ -47,20 +47,17 @@ public class MainServlet extends HttpServlet {
                 request.getSession().setMaxInactiveInterval(30*60);
                 request.getSession().setAttribute("anwender", anwender);
                 
-              //Hier werden die Challenges des Users übergeben
-              List<Challenge> challenges = chaBean.getChallengesForToday(katBean.getAllKategorienByUser(anwender.getId()));
-              request.getSession().setAttribute("challenges", challenges);
-                
-            // List<Challenge> challenges = chaBean.getAllChallengesByUser(user);
-            // request.getSession().setAttribute("challenges", challenges);
-                
+                //Hier werden die Challenges des Users übergeben
+                List<Challenge> challenges = chaBean.getChallengesForToday(katBean.getAllKategorienByUser(anwender.getId()));
+                request.getSession().setAttribute("challenges", challenges);
+
                 //Hier werden die Kategorien der Session übergeben
                 List<Kategorie> kategorien = katBean.getAllKategorien();
                 request.getSession().setAttribute("kategorien", kategorien);
-                
+
                 //Attribut setzen, ob User abgemeldet ist
                 request.getSession().setAttribute("abmelden", "false");
-                
+
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                 
             }else{
@@ -158,6 +155,7 @@ public class MainServlet extends HttpServlet {
             }*/
                              
         }else if (tempStep.equalsIgnoreCase("profil")){
+            
             
             response.sendRedirect("/DailyChallenge-war/profil.jsp");
             
