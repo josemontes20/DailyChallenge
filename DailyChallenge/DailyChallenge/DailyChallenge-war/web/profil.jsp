@@ -26,8 +26,10 @@
 
             Anwender a = (Anwender) request.getSession().getAttribute("anwender");
 
-            if (a.getUsername().equals("null")) {
-                response.sendRedirect("/DailyChallenge-war/login.jsp");
+            String abmelden = (String) session.getAttribute("abmelden");
+            
+            if (abmelden.equals("true")) {
+               response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
 
         %>

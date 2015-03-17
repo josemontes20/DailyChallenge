@@ -25,11 +25,17 @@
             response.addDateHeader("Expires", 0);
             response.addHeader("Pragma", "no-cache");
 
-            Anwender a = (Anwender) session.getAttribute("anwender");
-
-            if (a.getUsername().equals("null")) {
-                response.sendRedirect("/DailyChallenge-war/login.jsp");
+            Anwender a = (Anwender) session.getAttribute("anwender");   
+            
+            String abmelden = (String) session.getAttribute("abmelden");
+            
+            if (abmelden.equals("true")) {
+               response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
+            
+           
+
+            
 
         %>
 

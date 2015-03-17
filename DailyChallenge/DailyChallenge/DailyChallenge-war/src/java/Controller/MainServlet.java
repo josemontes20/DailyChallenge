@@ -58,6 +58,9 @@ public class MainServlet extends HttpServlet {
                 List<Kategorie> kategorien = katBean.getAllKategorien();
                 request.getSession().setAttribute("kategorien", kategorien);
                 
+                //Attribut setzen, ob User abgemeldet ist
+                request.getSession().setAttribute("abmelden", "false");
+                
                 response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                 
             }else{
@@ -84,14 +87,17 @@ public class MainServlet extends HttpServlet {
                                     iniscore);
                     
                         request.getSession().setMaxInactiveInterval(30*60);
-                        request.getSession().setAttribute("anwendername", user.getUsername());
+                        request.getSession().setAttribute("anwender", user);
                         
                         List<Challenge> challenges = chaBean.getChallengesForToday
                                                     (katBean.getAllKategorienByUser(user.getId()));
                         
               
                         request.getSession().setAttribute("challenges", challenges);
-                    
+                        
+                        //Attribut setzen, ob User abgemeldet ist
+                        request.getSession().setAttribute("abmelden", "false");
+                
                         response.sendRedirect("/DailyChallenge-war/mainpage.jsp");
                         break;
                     }
@@ -140,7 +146,7 @@ public class MainServlet extends HttpServlet {
             }
         }else if(tempStep.equalsIgnoreCase("abmelden")){
             
-            request.getSession().setAttribute("anwendername", "null");
+            request.getSession().setAttribute("abmelden", "true");
             response.sendRedirect("/DailyChallenge-war/login.jsp");
             
             //Aufgrund eines GlassFish-Bugs, wird eine NullPointerException geworfen.
@@ -157,10 +163,10 @@ public class MainServlet extends HttpServlet {
             
             
         }else if(tempStep.equalsIgnoreCase("loeschen_profil")){
-            int deleteStatus = anwbean.deleteUser((String)request.getSession().getAttribute("anwendername"));
+            int deleteStatus = anwbean.deleteUser((Anwender)request.getSession().getAttribute("anwender"));
             
             if(deleteStatus == 1){
-                request.getSession().setAttribute("anwendername", "null");
+                request.getSession().setAttribute("abmelden", "null");
                 response.sendRedirect("/DailyChallenge-war/userdel.jsp");
             }else{
                 response.sendRedirect("/DailyChallenge-war/userdel_error.jsp");

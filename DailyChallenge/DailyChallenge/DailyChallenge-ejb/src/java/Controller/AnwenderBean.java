@@ -106,8 +106,8 @@ public class AnwenderBean{
     }
     
     //Anwender wird aus der ANWENDER-Tabelle geloescht
-    public int deleteUser(String username){
-        Query q = em.createNamedQuery("Anwender.deleteUser", Anwender.class).setParameter("username", username);
+    public int deleteUser(Anwender a){
+        Query q = em.createNamedQuery("Anwender.deleteUser", Anwender.class).setParameter("username", a.getUsername());
         return q.executeUpdate();
     }
     
