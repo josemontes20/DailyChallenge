@@ -1,9 +1,3 @@
-<%-- 
-    Document   : userdel
-    Created on : 11.03.2015, 17:10:29
-    Author     : José Montes
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
