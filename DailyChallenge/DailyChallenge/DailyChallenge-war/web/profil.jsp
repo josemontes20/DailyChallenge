@@ -1,7 +1,5 @@
-
 <%@page import="daily.model.Anwender"%>
 <%@page import="daily.model.Kategorie"%>
-<%@page import="daily.model.Challenge"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -69,8 +67,6 @@
                     
                     if (kategorien != null && !kategorien.isEmpty()) {
 
-                        if (kategorien != null && !kategorien.isEmpty()) {
-
                             for (Kategorie kat : kategorien) {
 
                                 boolean containsKategorie = false;
@@ -84,26 +80,23 @@
 
 
                     <% if (containsKategorie) {%>
-                    <p> <input type="checkbox" checked name="SELKategorien" value="<%=kat.getName()%>"> </p> <%= kat.getName()%>
+                    <p> <input type="checkbox" checked name="SELKategorien" value="<%=kat.getName()%>" </p> <%= kat.getName()%>
                         <% } else {%>
-                    <p> <input type="checkbox" name="SELKategorien" value="<%= kat.getName()%>"> </p> <%= kat.getName()%> <%
+                    <p> <input type="checkbox" name="SELKategorien" value="<%= kat.getName()%>"</p> <%= kat.getName()%> <%
                             }
                         }
-                        %>      
-                    <p><input class="btn btn-lg btn-primary" type="submit" value="Speichern"/> </p>
+                    %>      
+                    <p><input class="btn btn-lg btn-primary" type="submit" value="Speichern"/></p>
                 </form>
                 <%
                 } else {
-                %>
-                    <p> Keine Kategorien vorhanden! </p> <%
+                %> <p> Keine Kategorien vorhanden! <p><%
                    }
                 %>
             </div>
-            
             <div class="jumbotron">      
-                <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/frontservlet?step=profil_loeschen"> Profil endgültig löschen </a>
+                <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/frontservlet?step=profil_loeschen">Profil endgültig löschen</a>
             </div>
-            
         </div>
     </body>
 </html>
