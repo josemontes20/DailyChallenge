@@ -31,7 +31,7 @@ public class FrontServlet extends HttpServlet {
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        //Session-Parameter "step" auslesen
         String tempStep = request.getParameter("step");
         
         // Erstellen der Klasse, die sich um Registrierung, Anmeldung und Abmeldung kümmert.
