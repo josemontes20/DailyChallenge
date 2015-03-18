@@ -24,7 +24,7 @@
             <pathelement path = "${java.class.path}$"/>
           </classpath>
 
-          <test name="test.daily.test.beans.Test_AnwenderBean"
+          <test name="DailyChallenge-ejb.test.daily.test.beans.Test_AnwenderBean"
                    haltonfailure="no" outfile="Result AnwenderBean">
 
             <formatter type="plain"/>
