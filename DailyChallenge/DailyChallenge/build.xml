@@ -33,7 +33,7 @@
         </javac>
     </target>
     
-    <target name="junit" depends="compile">
+    <target name="junit" depends="compileUnitTests">
 
         <junit printsummary="yes" haltonfailure="yes">
 
