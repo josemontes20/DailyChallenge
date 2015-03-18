@@ -23,7 +23,7 @@
         <pathelement location="${build.dir}" />
     </path>
     
-    <target name="compile"> 
+    <target name="compileTest"> 
             <javac srcdir="${src.dir}" destdir="${build.dir}"> 
                 <classpath refid="junit.class.path" /> 
             </javac> 
