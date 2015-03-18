@@ -80,9 +80,9 @@
 
 
                     <% if (containsKategorie) {%>
-                    <p> <input type="checkbox" checked name="SELKategorien" value="<%=kat.getName()%>" </p> <%= kat.getName()%>
+                    <p> <input type="checkbox" checked name="SELKategorien" value="<%=kat.getName()%>"/>  <%=kat.getName()%></p>
                         <% } else {%>
-                    <p> <input type="checkbox" name="SELKategorien" value="<%= kat.getName()%>"</p> <%= kat.getName()%> <%
+                    <p> <input type="checkbox" name="SELKategorien" value="<%= kat.getName()%>"/>  <%=kat.getName()%></p> <%
                             }
                         }
                     %>      
