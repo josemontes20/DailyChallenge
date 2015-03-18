@@ -27,14 +27,7 @@
         <pathelement path="test/"/>
     </path>
 
-    <target name="compile">
-        <javac destdir="bin">
-            <src path="src"/>
-            <classpath refid="compile.path"/>
-        </javac>
-    </target>
-
-    <target name="compileUnitTests" depends="compile">
+    <target name="compileUnitTests" depends="unit.test.path">
         <javac srcdir="test/" destdir="bin">
             <classpath refid="unit.test.path"/>
         </javac>
