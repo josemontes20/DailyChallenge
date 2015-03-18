@@ -10,6 +10,29 @@
 <project name="DailyChallenge" default="default" basedir="." xmlns:ear="http://www.netbeans.org/ns/j2ee-earproject/2">
     <description>Builds, tests, and runs the project DailyChallenge.</description>
     <import file="nbproject/build-impl.xml"/>   
+    
+    <target name="junit" >
+
+        <junit printsummary="yes" haltonfailure="yes">
+
+          <classpath>
+            <pathelement location="${project.class.path}"/>
+            <pathelement location="${build.tests}"/>
+            <pathelement path="${java.class.path}"/>
+          </classpath>
+
+          <test name="test.daily.test.beans.Test_AnwenderBean"
+                   haltonfailure="no" outfile="Result AnwenderBean">
+
+            <formatter type="plain"/>
+            <formatter type="xml"/>
+
+          </test>
+
+        </junit>
+    </target>
+    
+    
     <!--
 
     There exist several targets which are by default empty and which can be 
