@@ -24,22 +24,21 @@ public class Test_AnwenderBean {
         
         // Test Eingabe_1, Erwarteter Rückgabewert = true
         String mail1 = "test@test.com";
-        // Test
+        // Test 1
         boolean expResult1 = true;
         boolean result1 = anwBean.checkMailPattern(mail1);
         assertEquals(expResult1, result1);
         
         // Test Eingabe_2, Erwarteter Rückgabewert = true
         String mail2 = "test.2@test.test.com";
-        // Test
+        // Test 2
         boolean expResult2 = true;
         boolean result2 = anwBean.checkMailPattern(mail2);
         assertEquals(expResult2, result2);
         
-        // Test Eingabe_2, Erwarteter Rückgabewert = false
+        // Test Eingabe_3, Erwarteter Rückgabewert = false
         String mail3 = "test.test.com";
-        
-        // Test
+        // Test 3
         boolean expResult3 = false;
         boolean result3 = anwBean.checkMailPattern(mail3);
         assertEquals(expResult3, result3);
