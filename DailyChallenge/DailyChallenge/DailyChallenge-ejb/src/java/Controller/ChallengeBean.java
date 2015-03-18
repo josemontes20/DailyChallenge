@@ -11,6 +11,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
+import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import model.Kategorie;
@@ -59,6 +60,11 @@ public class ChallengeBean {
             Challenge c = findChallenge(today, kat);    // Suche die Challenge für Heute in allein meinen Kategorien
             if (c == null) {                            // Wenn nicht vorhanden, weise ein zufälliges für Heute zus
                 List<Challenge> unusedChallenges = findUnusedChallenges(kat);
+                
+                if (unusedChallenges.isEmpty()) {
+                    unusedChallenges = resetChallenges(kat);
+                }
+                
                 int randomNumber = (int)(Math.random() * unusedChallenges.size());
                 c = unusedChallenges.get(randomNumber);
                 
@@ -80,6 +86,20 @@ public class ChallengeBean {
     
     public List<Challenge> getAllChallengesByUser(Anwender anwender){
         return getAllChallengesByUser(anwender.getId());
+    }
+
+    private List<Challenge> resetChallenges(Kategorie k) {
+        TypedQuery<Challenge> challengesQuery = em.createNamedQuery("Challenge.findChallengeByKategorie", Challenge.class)
+                .setParameter("kategorie_id", k.getId());
+
+        em.setFlushMode(FlushModeType.AUTO);
+        List<Challenge> challenges = challengesQuery.getResultList();
+        for (Challenge c : challenges) {
+            c.setAktivAmDatum(null);
+            em.merge(c);
+        }
+        em.flush();
+        return challenges;
     }
     
     private String parseDateToString(Date date){
