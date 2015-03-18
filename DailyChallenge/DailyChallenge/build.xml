@@ -21,15 +21,12 @@
             <include name="**/*.jar"/>
         </fileset>
     </path>
-    
-    <path id="unit.test.path">
-        <path refid="compile.path"/>
-        <pathelement path="test/"/>
-    </path>
 
-    <target name="compileUnitTests" depends="unit.test.path">
+    <target name="compileUnitTests">
         <javac srcdir="test/" destdir="bin">
-            <classpath refid="unit.test.path"/>
+            
+            <path refid="compile.path"/>
+            <pathelement path="test/"/>
         </javac>
     </target>
     
