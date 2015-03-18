@@ -10,22 +10,14 @@
 <project name="DailyChallenge" default="default" basedir="." xmlns:ear="http://www.netbeans.org/ns/j2ee-earproject/2">
     <description>Builds, tests, and runs the project DailyChallenge.</description>
     <import file="nbproject/build-impl.xml"/>
-    
-    <path id="src.path">    
-    <pathelement path="src/"/>
-    </path>
-
-    <path id="compile.path">
-        <path refid="src.path"/>
-        <fileset dir="lib/">
-            <include name="**/*.jar"/>
-        </fileset>
-    </path>
 
     <target name="compileUnitTests">
-        <javac srcdir="test/" destdir="bin">
+        <javac srcdir="test/">
             
-            <path refid="compile.path"/>
+            <fileset dir="lib/">
+                <include name="**/*.jar"/>
+            </fileset>
+            
             <pathelement path="test/"/>
         </javac>
     </target>
