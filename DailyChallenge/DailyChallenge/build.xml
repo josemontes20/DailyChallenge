@@ -22,17 +22,8 @@
         <pathelement location="lib/hamcrest-core-1.3.jar" />
         <pathelement location="${build.dir}" />
     </path>
-    
-    <target name="compileTest"> 
-            <javac srcdir="${src.dir}" destdir="${build.dir}"> 
-                <classpath refid="junit.class.path" /> 
-            </javac> 
-            <javac srcdir="${test.dir}" destdir="${build.test.dir}"> 
-                <classpath refid="junit.class.path" /> 
-            </javac> 
-    </target> 
-    
-    <target name="junit" depends="compile">
+        
+    <target name="junit">
 
         <junit printsummary="yes" haltonfailure="yes">
 
