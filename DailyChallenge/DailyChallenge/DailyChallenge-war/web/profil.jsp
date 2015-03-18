@@ -27,9 +27,9 @@
             Anwender a = (Anwender) request.getSession().getAttribute("anwender");
 
             String abmelden = (String) request.getSession().getAttribute("abmelden");
-            
+
             if (abmelden.equals("true")) {
-               response.sendRedirect("/DailyChallenge-war/login.jsp");
+                response.sendRedirect("/DailyChallenge-war/login.jsp");
             }
 
         %>
@@ -56,28 +56,30 @@
         </nav>
         <!-- Inhalt -->
         <div class="container">
-            <div class="jumbotron">
+            <div class="jumbotron" style="margin-bottom: 10px;">
                 <h1>Profileinstellungen!</h1>        
             </div>
-            <div class="jumbotron">
-                <h2>Kategorien</h2>
+            
+            <!-- Kategorie Auswahl -->
+            <div class="jumbotron" style="margin-bottom: 10px;">
+                <h2 style="margin-top: 0px;margin-bottom: 20px;">Kategorien</h2>
                 <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
-                <%
-                    List<Kategorie> kategorien = (List) request.getSession().getAttribute("kategorien");
-                    
-                    if (kategorien != null && !kategorien.isEmpty()) {
+                    <%
+                        List<Kategorie> kategorien = (List) request.getSession().getAttribute("kategorien");
 
-                        for (Kategorie kat : kategorien) {
+                        if (kategorien != null && !kategorien.isEmpty()) {
 
-                            boolean containsKategorie = false;
-                            
-                            for (Kategorie katUser : a.getAnwender_kategorien()) {
-                                if (katUser.getName().equals(kat.getName())) {
-                                    containsKategorie = true;
+                            for (Kategorie kat : kategorien) {
+
+                                boolean containsKategorie = false;
+
+                                for (Kategorie katUser : a.getAnwender_kategorien()) {
+                                    if (katUser.getName().equals(kat.getName())) {
+                                        containsKategorie = true;
+                                    }
                                 }
-                            }   
-                %>
-                
+                    %>
+
 
                     <% if (containsKategorie) {%>
                     <p> <input type="checkbox" checked="true" name="SELKategorien" value="<%=kat.getName()%>" </p> <%= kat.getName()%>
@@ -92,7 +94,7 @@
                 } else {
                 %> <p> Keine Kategorien vorhanden! <p><%
                     }
-                %>
+                    %>
             </div>
             <div class="jumbotron">      
                 <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/mainservlet?step=loeschen_profil">Profil endgültig löschen</a>
