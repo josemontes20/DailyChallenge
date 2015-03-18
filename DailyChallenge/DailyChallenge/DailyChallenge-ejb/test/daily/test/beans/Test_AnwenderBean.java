@@ -18,6 +18,7 @@ public class Test_AnwenderBean {
     @Test
     public void testCheckMailPattern() throws Exception
     {
+        System.out.println("Überprüfung der E-Mail-Validierungs-Methode!(AnwenderBean)");
         // Test-Kandidat
         AnwenderBean anwBean = new AnwenderBean();
         
@@ -42,6 +43,8 @@ public class Test_AnwenderBean {
         boolean expResult3 = false;
         boolean result3 = anwBean.checkMailPattern(mail3);
         assertEquals(expResult3, result3);
+        
+        System.out.println("Überprüfung der E-Mail-Validierungs-Methode abgeschlossen!");
     }
     
 }
