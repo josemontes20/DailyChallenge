@@ -11,8 +11,36 @@
     <description>Builds, tests, and runs the project DailyChallenge.</description>
     <import file="nbproject/build-impl.xml"/>
     
+    <path id="src.path">    
+    <pathelement path="src/"/>
+    </path>
+
+    <path id="compile.path">
+        <path refid="src.path"/>
+        <fileset dir="lib/">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
     
-    <target name="junit">
+    <path id="unit.test.path">
+        <path refid="compile.path"/>
+        <pathelement path="test/"/>
+    </path>
+
+    <target name="compile">
+        <javac destdir="bin">
+            <src path="src"/>
+            <classpath refid="compile.path"/>
+        </javac>
+    </target>
+
+    <target name="compileUnitTests" depends="compile">
+        <javac srcdir="test/" destdir="bin">
+            <classpath refid="unit.test.path"/>
+        </javac>
+    </target>
+    
+    <target name="junit" depends="compile">
 
         <junit printsummary="yes" haltonfailure="yes">
 
@@ -24,7 +52,7 @@
             <pathelement path = "${java.class.path}$"/>
           </classpath>
 
-          <test name="DailyChallenge-ejb.test.daily.test.beans.Test_AnwenderBean"
+          <test name="test.daily.test.beans.Test_AnwenderBean"
                    haltonfailure="no" outfile="Result AnwenderBean">
 
             <formatter type="plain"/>
