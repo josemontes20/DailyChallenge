@@ -38,7 +38,7 @@
             <div class="jumbotron">
                 <h2 style="margin-left: 17%;">Melde dich hier an!</h2>
                 <br>
-                <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=registrieren">
+                <form class="form-horizontal" method="post" action="/DailyChallenge-war/frontservlet?step=registrieren">
                     <div class="form-group">
                         <label for="User" class="control-label col-xs-2">Benutzername:</label>
                         <div class="col-xs-10">

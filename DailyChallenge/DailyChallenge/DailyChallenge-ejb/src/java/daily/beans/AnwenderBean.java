@@ -53,7 +53,7 @@ public class AnwenderBean{
     }
     
     // Diese Methode überprüft sämtliche Eingaben die der Anwender bei der Registrierung eingibt.
-    public String registerValide(String username, String email, String passwort, String passwordRepeat){
+    public String validateRegistration(String username, String email, String passwort, String passwordRepeat){
         
         // Das eingegebene Passwort und die geforderte Wiederholung des Passworts dürfen nicht leer sein.
         // Weiterhin müssen beide eingegebnen Passwörter übereinstimmen.
