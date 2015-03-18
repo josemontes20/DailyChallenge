@@ -13,11 +13,6 @@
 
     <target name="compileUnitTests">
         <javac srcdir="test/">
-            
-            <fileset dir="lib/">
-                <include name="**/*.jar"/>
-            </fileset>
-            
             <pathelement path="test/"/>
         </javac>
     </target>
