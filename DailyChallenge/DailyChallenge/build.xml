@@ -10,27 +10,39 @@
 <project name="DailyChallenge" default="default" basedir="." xmlns:ear="http://www.netbeans.org/ns/j2ee-earproject/2">
     <description>Builds, tests, and runs the project DailyChallenge.</description>
     <import file="nbproject/build-impl.xml"/>
-
-    <target name="compileUnitTests">
-        <javac srcdir="test/">
-            <pathelement path="test/"/>
-        </javac>
-    </target>
     
-    <target name="junit" depends="compileUnitTests">
+    <property name="src.dir" location="src" />
+    <property name="test.dir" location="test"/>
+    
+    <property name="build.dir" location="DailyChallenge-ejb" />
+    <property name="build.test.dir" location="DailyChallenge-ejb/test" /> 
+    
+    <path id="junit.class.path">
+        <pathelement location="lib/junit-4.12.jar" />
+        <pathelement location="lib/hamcrest-core-1.3.jar" />
+        <pathelement location="${build.dir}" />
+    </path>
+    
+    <target name="compile"> 
+            <javac srcdir="${src.dir}" destdir="${build.dir}"> 
+                <classpath refid="junit.class.path" /> 
+            </javac> 
+            <javac srcdir="${test.dir}" destdir="${build.test.dir}"> 
+                <classpath refid="junit.class.path" /> 
+            </javac> 
+    </target> 
+    
+    <target name="junit" depends="compile">
 
         <junit printsummary="yes" haltonfailure="yes">
 
+          <classpath refid="junit.class.path" />
           <classpath>
-            <pathelement location="lib/junit-4.12.jar"/>
-            <pathelement location="lib/hamcrest-core-1.3.jar"/>
-            <pathelement location="${project.class.path}"/>
-            <pathelement location="${build.tests}"/>
-            <pathelement path = "${java.class.path}$"/>
+            <pathelement location="${build.test.dir}"/>
           </classpath>
 
           <test name="test.daily.test.beans.Test_AnwenderBean"
-                   haltonfailure="no" outfile="Result AnwenderBean">
+                   haltonfailure="yes" outfile="Result AnwenderBean">
 
             <formatter type="plain"/>
             <formatter type="xml"/>
