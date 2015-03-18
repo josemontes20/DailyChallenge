@@ -19,9 +19,12 @@
           <classpath>
             <pathelement location="lib/junit-4.12.jar"/>
             <pathelement location="lib/hamcrest-core-1.3.jar"/>
+            <pathelement location="${project.class.path}"/>
+            <pathelement location="${build.tests}"/>
+            <pathelement path = "${java.class.path}$"/>
           </classpath>
 
-          <test name="daily.test.beans.Test_AnwenderBean.java"
+          <test name="test.daily.test.beans.Test_AnwenderBean"
                    haltonfailure="no" outfile="Result AnwenderBean">
 
             <formatter type="plain"/>
