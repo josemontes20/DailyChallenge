@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package daily.servlet;
 
-import model.Anwender;
-import model.Kategorie;
-import model.Challenge;
+import daily.beans.ChallengeBean;
+import daily.beans.KategorieBean;
+import daily.beans.AnwenderBean;
+import daily.model.Anwender;
+import daily.model.Kategorie;
+import daily.model.Challenge;
 
 import java.io.IOException;
 import java.util.ArrayList;
