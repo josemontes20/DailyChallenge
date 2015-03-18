@@ -12,7 +12,7 @@
     <import file="nbproject/build-impl.xml"/>
     
     <property name="src.dir" location="src" />
-    <property name="test.dir" location="test"/>
+    <property name="test.dir" location="DailyChallenge-ejb/test"/>
     
     <property name="build.dir" location="DailyChallenge-ejb" />
     <property name="build.test.dir" location="DailyChallenge-ejb/test" /> 
