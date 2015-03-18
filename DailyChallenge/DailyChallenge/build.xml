@@ -12,7 +12,7 @@
     <import file="nbproject/build-impl.xml"/>
     
     
-    <target name="junit" depends="resolve">
+    <target name="junit">
 
         <junit printsummary="yes" haltonfailure="no">
 
