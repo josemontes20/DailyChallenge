@@ -1,4 +1,4 @@
-package model;
+package daily.model;
 
 import java.util.List;
 import java.io.Serializable;
@@ -11,11 +11,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
-/**
- *
- * @author José Montes
- */
 
 @Entity
 @NamedQueries(
