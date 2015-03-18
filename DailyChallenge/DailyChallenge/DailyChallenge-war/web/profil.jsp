@@ -49,7 +49,7 @@
 
                     <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
                         <li style="font-size: 18px; font-weight: bold; margin-top: 14px; color: #646464">Nicht <%= a.getUsername()%>?</li>
-                        <li><a href="/DailyChallenge-war/mainservlet?step=abmelden" style="font-size: 18px; font-weight: bold; color: #3e84c0">Abmelden!</a></li>
+                        <li><a href="/DailyChallenge-war/frontservlet?step=abmelden" style="font-size: 18px; font-weight: bold; color: #3e84c0">Abmelden!</a></li>
                     </ul>
                 </div>
             </div>
@@ -61,7 +61,7 @@
             </div>
             <div class="jumbotron">
                 <h2>Kategorien</h2>
-                <form class="form-horizontal" method="post" action="/DailyChallenge-war/mainservlet?step=select_kategorien">
+                <form class="form-horizontal" method="post" action="/DailyChallenge-war/frontservlet?step=kategorien_auswaehlen">
                 <%
                     List<Kategorie> kategorien = (List) request.getSession().getAttribute("kategorien");
                     
@@ -95,7 +95,7 @@
                 %>
             </div>
             <div class="jumbotron">      
-                <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/mainservlet?step=loeschen_profil">Profil endgültig löschen</a>
+                <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/frontservlet?step=profil_loeschen">Profil endgültig löschen</a>
             </div>
         </div>
 </html>
