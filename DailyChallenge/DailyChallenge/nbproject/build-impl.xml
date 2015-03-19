@@ -624,14 +624,11 @@ exists or setup the property manually. For example like this:
     <path id="classpath.test">
             <pathelement location="lib/junit-4.12.jar" />
             <pathelement location="lib/hamcrest-core-1.3.jar" />
-            <pathelement location="${basedir}" /> 
         <path refid="classpath.base" />
     </path>
     
     <target name="compileTest">
-        <javac srcdir="${basedir}">
           <classpath refid="classpath.test"/>
-        </javac>
     </target>
 
     <!-- JUNIT -->
