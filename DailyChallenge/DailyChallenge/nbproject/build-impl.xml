@@ -616,39 +616,6 @@ exists or setup the property manually. For example like this:
     <target if="profiler.loadgen.path" name="-profile-start-loadgen">
         <loadgenstart path="${profiler.loadgen.path}"/>
     </target>
-    
-    <!--TEST SECTION-->
-    <path id="classpath.base">
-    </path>
-    
-    <path id="classpath.test">
-            <pathelement location="lib/junit-4.12.jar" />
-            <pathelement location="lib/hamcrest-core-1.3.jar" />
-        <path refid="classpath.base" />
-    </path>
-    
-    <target name="compileTest">
-          <classpath refid="classpath.test"/>
-    </target>
-
-    <!-- JUNIT -->
-    <target name="junit">
-
-      <junit fork="no" printsummary="yes" haltonfailure="yes">
-
-        <classpath refid="classpath.test" />
-
-        <test name="test.daily.test.beans.Test_AnwenderBean"
-                 haltonfailure="yes" outfile="Result AnwenderBean">
-
-          <formatter type="plain"/>
-          <formatter type="xml"/>
-
-        </test>
-
-      </junit>
-    </target>
-        
     <!--
     CLEANUP SECTION
     -->
