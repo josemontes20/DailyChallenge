@@ -627,6 +627,12 @@ exists or setup the property manually. For example like this:
             <pathelement location="${basedir}" /> 
         <path refid="classpath.base" />
     </path>
+    
+    <target name="compileTest">
+        <javac srcdir="${basedir}">
+          <classpath refid="classpath.test"/>
+        </javac>
+    </target>
 
     <!-- JUNIT -->
     <target name="junit">
