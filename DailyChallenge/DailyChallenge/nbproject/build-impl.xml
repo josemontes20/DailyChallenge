@@ -626,7 +626,7 @@ exists or setup the property manually. For example like this:
     </path>
 
     <!-- JUNIT -->
-    <target name="junit" depends="compileTest">
+    <target name="junit">
 
       <junit fork="no" printsummary="yes" haltonfailure="yes">
 
@@ -642,13 +642,7 @@ exists or setup the property manually. For example like this:
 
       </junit>
     </target>
-    
-    <target name="cleanTest" depends="junit">
-      <delete>
-        <fileset dir="${basedir}" includes="*.class"/>
-      </delete>
-    </target>
-    
+        
     <!--
     CLEANUP SECTION
     -->
