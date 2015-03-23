@@ -32,7 +32,7 @@
                 </div>
             </div>
         </nav>
-        <!-- Inhalt -->
+        <!-- Ausgabe der Fehlermeldung -->
         <div class="container">
             <div class="jumbotron">
                 <h1>Da lief was falsch!</h1>
