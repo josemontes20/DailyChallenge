@@ -13,7 +13,7 @@
     
     <!--<property name="src.dir" location="DailyChallenge-ejb/src" />
     <property name="test.dir" location="DailyChallenge-ejb/test" />
-    <property name="build.dir" location="compileTest/build" />
+    <property name="build.dir" location="DailyChallenge-ejb/build" />
 
     <path id="junit.class.path">
       <pathelement location="C:/Programmierung/apache-ant-1.9.4/lib/junit-4.12.jar" />
@@ -24,22 +24,12 @@
       <pathelement location="${build.dir}" />
       <pathelement location="C:/Users/José Montes/Desktop/DailyChallenge/DailyChallenge/DailyChallenge/DailyChallenge/compileTest/build/META-INF/persistence.xml" />
     </path>
-    
-    <target name="compile">
-        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="10">
-        <classpath refid="junit.class.path" />
-        </javac>
-      
-        <javac srcdir="${test.dir}" destdir="${build.dir}" includeantruntime="10">
-          <classpath refid="junit.class.path" />
-        </javac>
-    </target>
-    
-    <target name="unit-test" depends="compile">
+ 
+    <target name="unit-test">
         <junit haltonerror="yes">
             <classpath refid="junit.class.path" />
             
-            <test name="compileTest.build.daily.test.beans.Test_AnwenderBean" />
+            <test name="daily.test.beans.Test_AnwenderBean" />
             <formatter type="plain" />
         </junit>
     </target>-->
