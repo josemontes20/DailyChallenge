@@ -38,7 +38,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container" style="padding-left: 35px;">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="mainpage.jsp">
                         <img src="images/pfeil.png" style="height: 50px; width: auto;">
                     </a>
                 </div>
@@ -60,7 +60,7 @@
                 <h1>Profileinstellungen!</h1>        
             </div>
             <!-- Auswahl der Kategorien -->
-            <div class="jumbotron">
+            <div class="jumbotron" style="padding-top: 2%;padding-bottom: 2%;">
                 <h2>Kategorien</h2>
                 <form class="form-horizontal" method="post" action="/DailyChallenge-war/frontservlet?step=kategorien_auswaehlen">
                 <%
@@ -87,7 +87,7 @@
                             }
                         }
                     %>      
-                    <p><input class="btn btn-lg btn-primary" type="submit" value="Speichern"/></p>
+                    <p><input class="btn btn-lg btn-primary" type="submit" value="Speichern" style="margin-left: 2%;"/></p>
                 </form>
                 <%
                 } else {
