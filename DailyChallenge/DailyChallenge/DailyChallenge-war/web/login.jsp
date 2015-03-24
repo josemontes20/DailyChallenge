@@ -33,7 +33,7 @@
                 </div>
             </div>
         </nav>
-        <!-- Inhalt -->
+        <!-- Formular -->
         <div class="container">
             <div class="jumbotron">
                 <h2 style="margin-left: 17%;">Gib deine Benutzerdaten ein!</h2>

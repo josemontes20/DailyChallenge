@@ -55,12 +55,14 @@
                 </div>
             </div>
         </nav>
-        <!-- Inhalt -->
+        <!-- Begrüßung -->
         <div class="container">
             <div class="jumbotron" style="margin-bottom: 20px;">
                 <h1>Servus, <%= a.getUsername()%>!</h1>
                 <h2>Deine heutigen Challenges!</h2>
             </div>
+                
+            <!-- Ausgabe der Challenges -->
                 <%
                     // Hier wird die Challenge-Liste des Users übergeben   
                     List<Challenge> challenges = (List) request.getSession().getAttribute("challenges");

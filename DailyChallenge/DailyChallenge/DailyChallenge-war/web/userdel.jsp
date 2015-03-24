@@ -43,10 +43,11 @@
                 </div>
             </div>
         </nav>
-        <!-- Inhalt -->
+        <!-- Ausgabe -->
         <div class="container">
             <div class="jumbotron">
                 <p>Schade, dass du uns verlässt.</p>
+                <p>Dein Konto wurde gelöscht.</p>
                 <a class="btn btn-lg btn-primary" href="/DailyChallenge-war/index.html">zur Startseite</a>
             </div>
         </div>

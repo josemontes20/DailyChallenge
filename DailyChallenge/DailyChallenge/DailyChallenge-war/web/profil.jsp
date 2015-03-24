@@ -54,11 +54,12 @@
                 </div>
             </div>
         </nav>
-        <!-- Inhalt -->
         <div class="container">
+            <!-- Überschrift -->
             <div class="jumbotron" style="margin-bottom: 10px;">
                 <h1>Profileinstellungen!</h1>        
             </div>
+            <!-- Auswahl der Kategorien -->
             <div class="jumbotron">
                 <h2>Kategorien</h2>
                 <form class="form-horizontal" method="post" action="/DailyChallenge-war/frontservlet?step=kategorien_auswaehlen">
@@ -94,6 +95,7 @@
                    }
                 %>
             </div>
+            <!-- Profil löschen -->
             <div class="jumbotron">      
                 <a class="btn btn-lg btn-danger" href="/DailyChallenge-war/frontservlet?step=profil_loeschen">Profil endgültig löschen</a>
             </div>

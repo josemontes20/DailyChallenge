@@ -33,7 +33,7 @@
                 </div>
             </div>
         </nav>
-        <!-- Inhalt -->
+        <!-- Formular zu Registrierung -->
         <div class="container">
             <div class="jumbotron">
                 <h2 style="margin-left: 17%;">Melde dich hier an!</h2>

@@ -48,7 +48,7 @@
                 </div>
             </div>
         </nav>
-        <!-- Inhalt -->
+        <!-- Fehlermeldung -->
         <div class="container">
             <div class="jumbotron">
                 <h1>Da lief was falsch!</h1>
