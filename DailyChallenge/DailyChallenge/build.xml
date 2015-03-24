@@ -39,7 +39,7 @@
         <junit haltonerror="yes">
             <classpath refid="junit.class.path" />
             
-            <test name="daily.test.beans.Test_AnwenderBean" />
+            <test name="compileTest.build.daily.test.beans.Test_AnwenderBean" />
             <formatter type="plain" />
         </junit>
     </target>
