@@ -39,7 +39,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container" style="padding-left: 35px;">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="mainpage.jsp">
                         <img src="images/pfeil.png" style="height: 50px; width: auto;">
                     </a>
                 </div>
@@ -69,8 +69,8 @@
                     
                     if (!challenges.isEmpty()) {
                         for (Challenge cha : challenges) {
-                %>  <div class="jumbotron"  style="margin-bottom: 10px;">
-                    <p> <%= (String) cha.getKategorie().getName()%> </p>
+                %>  <div class="jumbotron"  style="margin-bottom: 10px;padding-top: 2%;padding-bottom: 2%;">
+                    <h2 style="font-weight: bold"> <%= (String) cha.getKategorie().getName()%> </h2>
                     <p> <%= cha.getBeschreibung()%> </p>   
                 </div>
                 <%
