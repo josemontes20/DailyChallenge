@@ -1,7 +1,6 @@
 package daily.test.beans;
 
 import daily.beans.AnwenderBean;
-import daily.model.Anwender;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
@@ -20,10 +19,10 @@ public class Test_AnwenderBean {
     
     /**
      * Test zur Überprüfung des korrekten Verhaltens der checkMailPattern()-Methode.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testCheckMailPattern() throws Exception
-    {
+    public void testCheckMailPattern() throws Exception{
         System.out.println("Überprüfung der E-Mail-Validierungs-Methode!(AnwenderBean)");
         
         // Test Eingabe_1, Erwarteter Rückgabewert = true
@@ -53,9 +52,11 @@ public class Test_AnwenderBean {
     
     /**
      * Test zur Überprüfung des korrekten Verhaltens der validateRegistration()-Methode.
+     * @throws java.lang.Exception
      */
     @Test
     public void testvalidateRegistration() throws Exception{
+        System.out.println("Start Test validateRegistration!");
         
         //Test Eingabe_1, Erwarteter Wert: USERNAME NOT NULL
         String user_1 = "";
@@ -77,5 +78,6 @@ public class Test_AnwenderBean {
         String result_2 = anwBean.validateRegistration(user_2, email_2, password_3, password_4);
         assertEquals(expResult_2, result_2); 
         
+        System.out.println("Ende Test validateRegistration!");
     }
 }
