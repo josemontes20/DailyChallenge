@@ -15,30 +15,28 @@
     <property name="test.dir" location="DailyChallenge-ejb/test" />
     <property name="build.dir" location="DailyChallenge-ejb/build" />
 
-    <path id="junit.class.path">
-      <pathelement location="C:/Programmierung/apache-ant-1.9.4/lib/junit-4.12.jar" />
-      <pathelement location="C:/Programmierung/apache-ant-1.9.4/lib/hamcrest-core-1.3.jar" />
-      
+    <path id="junit.class.path">    
+        <pathelement location="C:/Users/José Montes/Desktop/DailyChallenge/DailyChallenge/DailyChallenge/DailyChallenge/compileTest/build/META-INF/persistence.xml" />
+        
         <fileset dir="C:/Programmierung/GlassFishServer/glassfish/modules" >
                 <include name="**/*.jar"/>
         </fileset>
         
-      <pathelement location="${build.dir}" />
-      <pathelement location="C:/Users/José Montes/Desktop/DailyChallenge/DailyChallenge/DailyChallenge/DailyChallenge/compileTest/build/META-INF/persistence.xml" />
+        <pathelement location="${build.dir}" />
     </path>
     
     <target name="compileTest">
-        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="15">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="true">
             <classpath refid="junit.class.path" />
         </javac>
         
-        <javac srcdir="${test.dir}" destdir="${build.dir}" includeantruntime="15">
+        <javac srcdir="${test.dir}" destdir="${build.dir}" includeantruntime="true">
             <classpath refid="junit.class.path" />
         </javac>
     </target>
     
-    <target name="unit-test">
-        <junit haltonerror="yes">
+    <target name="unit-test" depends="compileTest">
+        <junit haltonerror="yes" showoutput="true" >
             <classpath refid="junit.class.path" />
             
             <test name="daily.test.beans.Test_AnwenderBean" />
