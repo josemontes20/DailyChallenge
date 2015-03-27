@@ -30,21 +30,21 @@ public class Test_AnwenderBean {
         // Test 1
         boolean result1 = anwBean.checkMailPattern(mail1);
         assertTrue(result1);
-        System.out.println("Ueberprüfung der E-Mail-Validierungs-Methode: Test 1 erfolgreich!");
+        System.out.println("Ueberpruefung der E-Mail-Validierungs-Methode: Test 1 erfolgreich!");
         
         // Test Eingabe_2, Erwarteter Rückgabewert = true
         String mail2 = "test.2@test.test.com";
         // Test 2
         boolean result2 = anwBean.checkMailPattern(mail2);
         assertTrue(result2);
-        System.out.println("Ueberprüfung der E-Mail-Validierungs-Methode: Test 2 erfolgreich!");
+        System.out.println("Ueberpruefung der E-Mail-Validierungs-Methode: Test 2 erfolgreich!");
          
         // Test Eingabe_3, Erwarteter Rückgabewert = false
         String mail3 = "test.test.com";
         // Test 3
         boolean result3 = anwBean.checkMailPattern(mail3);
         assertFalse(result3);
-        System.out.println("Ueberprüfung der E-Mail-Validierungs-Methode: Test 3 erfolgreich!");
+        System.out.println("Ueberpruefung der E-Mail-Validierungs-Methode: Test 3 erfolgreich!");
         
         System.out.println("\n" + "Ende Ueberpruefung der E-Mail-Validierungs-Methode!");
     }
@@ -67,7 +67,7 @@ public class Test_AnwenderBean {
         String expResult1 = "USERNAME NOT NULL";
         String result1 = anwBean.validateRegistration(user_1, email_1, password_1, password_2);
         assertEquals(expResult1, result1);
-        System.out.println("Ueberprüfung der validateRegistration-Methode: Test 1 erfolgreich!");
+        System.out.println("Ueberpruefung der validateRegistration-Methode: Test 1 erfolgreich!");
         
         //Test Eingabe_2, Erwarteter Wert: PASSWORD NOT OK
         String user_2="Test";
@@ -78,7 +78,7 @@ public class Test_AnwenderBean {
         String expResult_2 = "PASSWORD NOT OK";
         String result_2 = anwBean.validateRegistration(user_2, email_2, password_3, password_4);
         assertEquals(expResult_2, result_2); 
-        System.out.println("Ueberprüfung der validateRegistration-Methode: Test 2 erfolgreich!");
+        System.out.println("Ueberpruefung der validateRegistration-Methode: Test 2 erfolgreich!");
         
         System.out.println("\n" + "Ende Ueberpruefung validateRegistration!");
     }
