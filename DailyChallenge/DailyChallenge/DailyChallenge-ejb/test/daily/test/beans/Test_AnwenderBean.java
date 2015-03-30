@@ -43,7 +43,7 @@ public class Test_AnwenderBean {
         String mail3 = "test.test.com";
         // Test 3
         boolean result3 = anwBean.checkMailPattern(mail3);
-        assertFalse(result3);
+        assertTrue(result3);
         System.out.println("Ueberpruefung der E-Mail-Validierungs-Methode: Test 3 erfolgreich!");
         
         System.out.println("\n" + "Ende Ueberpruefung der E-Mail-Validierungs-Methode!");
