@@ -41,6 +41,7 @@
             
             <test name="daily.test.beans.Test_AnwenderBean" />
             <formatter type="plain" />
+            <formatter type="xml" />
         </junit>
     </target>
               
