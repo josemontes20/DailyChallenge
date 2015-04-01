@@ -58,7 +58,7 @@
         <!-- Begrüßung -->
         <div class="container">
             <div class="jumbotron" style="margin-bottom: 20px;">
-                <h1>Servus, <%= a.getUsername()%>!</h1>
+                <h1>Willkommen, <%= a.getUsername()%>!</h1>
                 <h2>Deine heutigen Challenges!</h2>
             </div>
                 
